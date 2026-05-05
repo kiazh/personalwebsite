@@ -1,13 +1,15 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, startTransition } from 'react'
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    startTransition(() => setMounted(true))
+  }, [])
 
   if (!mounted) return <span style={{ color: 'var(--muted)', fontSize: '14px', width: '32px', display: 'inline-block' }} />
 
