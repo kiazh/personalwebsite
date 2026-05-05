@@ -4,7 +4,6 @@ import { About } from '@/components/sections/About'
 import { Work } from '@/components/sections/Work'
 import { Timeline } from '@/components/sections/Timeline'
 import { Hobbies } from '@/components/sections/Hobbies'
-import { Contact } from '@/components/sections/Contact'
 import { Footer } from '@/components/Footer'
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Work />
       <Timeline />
       <Hobbies />
-      <Contact />
       <Footer />
     </main>
   )
