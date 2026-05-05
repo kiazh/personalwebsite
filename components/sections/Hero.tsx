@@ -26,7 +26,6 @@ export function Hero() {
       </h1>
       <p style={{
         color: 'var(--muted)',
-        maxWidth: '440px',
         lineHeight: 1.7,
         fontSize: '17px',
       }}>

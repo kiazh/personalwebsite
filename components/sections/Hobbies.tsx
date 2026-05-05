@@ -60,7 +60,6 @@ export function Hobbies() {
         color: 'var(--muted)',
         fontSize: '15px',
         lineHeight: 1.75,
-        maxWidth: '480px',
       }}>
         {interests[active].body}
       </p>

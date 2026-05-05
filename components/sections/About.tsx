@@ -2,7 +2,7 @@ export function About() {
   return (
     <section id="about" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
       <SectionLabel>About</SectionLabel>
-      <div style={{ maxWidth: '480px', lineHeight: 1.8 }}>
+      <div style={{ lineHeight: 1.8 }}>
         <p style={{ color: 'var(--fg)', marginBottom: '20px' }}>
           I've spent the last few years trying to understand what matters. Started with nihilism, moved through absurdism, landed somewhere between the two: building things because the act of making is more honest than the alternative.
         </p>

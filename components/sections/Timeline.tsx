@@ -61,7 +61,7 @@ export function Timeline() {
                   </span>
                 )}
               </div>
-              <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7, maxWidth: '420px' }}>
+              <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7 }}>
                 {event.description}
               </p>
             </div>
