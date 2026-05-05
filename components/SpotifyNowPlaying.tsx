@@ -1,73 +1,97 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 interface SpotifyData {
   track: string
   artist: string
-  album?: string
-  albumArt?: string
-  url?: string
+  url: string
+  timestamps: { start: number; end: number } | null
+}
+
+function formatTime(ms: number): string {
+  const s = Math.floor(ms / 1000)
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
 }
 
 export function SpotifyNowPlaying() {
   const [spotify, setSpotify] = useState<SpotifyData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [progress, setProgress] = useState(0)
+  const [elapsed, setElapsed] = useState(0)
+  const tickRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
     const fetchSpotify = async () => {
       try {
-        const response = await fetch('https://api.lanyard.rest/v1/users/431549003449237505')
-        const data = await response.json()
-
+        const res = await fetch('https://api.lanyard.rest/v1/users/431549003449237505')
+        const data = await res.json()
         if (data.success && data.data?.spotify) {
           const s = data.data.spotify
           setSpotify({
             track: s.song,
             artist: s.artist,
-            album: s.album,
-            albumArt: s.album_art_url,
             url: `https://open.spotify.com/track/${s.track_id}`,
+            timestamps: s.timestamps ?? null,
           })
+        } else {
+          setSpotify(null)
         }
-      } catch (error) {
-        console.error('Failed to fetch Spotify data:', error)
-      } finally {
-        setLoading(false)
+      } catch {
+        // silent fail
       }
     }
 
     fetchSpotify()
-    const interval = setInterval(fetchSpotify, 30000) // Refresh every 30s
-
-    return () => clearInterval(interval)
+    const poll = setInterval(fetchSpotify, 30000)
+    return () => clearInterval(poll)
   }, [])
 
-  if (loading) return null
+  // tick progress every second using timestamps from API
+  useEffect(() => {
+    if (tickRef.current) clearInterval(tickRef.current)
+    if (!spotify?.timestamps) return
+
+    const tick = () => {
+      const { start, end } = spotify.timestamps!
+      const duration = end - start
+      const current = Math.min(Date.now() - start, duration)
+      setElapsed(current)
+      setProgress(current / duration)
+    }
+
+    tick()
+    tickRef.current = setInterval(tick, 1000)
+    return () => { if (tickRef.current) clearInterval(tickRef.current) }
+  }, [spotify])
+
   if (!spotify) return null
+
+  const duration = spotify.timestamps ? spotify.timestamps.end - spotify.timestamps.start : 0
 
   return (
     <div style={{
       position: 'fixed',
       top: '48px',
       left: '24px',
-      fontSize: '13px',
-      color: 'var(--muted)',
+      width: '190px',
       fontFamily: 'var(--font-eb-garamond)',
-      maxWidth: '200px',
       lineHeight: 1.4,
     }}>
-      <span style={{ opacity: 0.6 }}>listening to</span>
-      <br />
+      <span style={{ color: 'var(--muted)', fontSize: '12px' }}>listening to</span>
       <a
         href={spotify.url}
         target="_blank"
         rel="noopener noreferrer"
         style={{
           color: 'var(--fg)',
+          fontSize: '14px',
+          fontWeight: 500,
           textDecoration: 'none',
           display: 'block',
-          marginTop: '2px',
+          marginTop: '4px',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
           transition: 'color 0.15s ease',
         }}
         onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--muted)')}
@@ -75,9 +99,47 @@ export function SpotifyNowPlaying() {
       >
         {spotify.track}
       </a>
-      <span style={{ fontSize: '12px', opacity: 0.7 }}>
+      <span style={{
+        color: 'var(--muted)',
+        fontSize: '12px',
+        display: 'block',
+        marginTop: '2px',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      }}>
         {spotify.artist}
       </span>
+
+      {duration > 0 && (
+        <>
+          <div style={{
+            marginTop: '10px',
+            height: '2px',
+            background: 'var(--border)',
+            borderRadius: '1px',
+            overflow: 'hidden',
+          }}>
+            <div style={{
+              height: '100%',
+              width: `${Math.min(progress * 100, 100)}%`,
+              background: 'var(--muted)',
+              transition: 'width 1s linear',
+            }} />
+          </div>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginTop: '5px',
+            fontSize: '11px',
+            color: 'var(--muted)',
+            opacity: 0.7,
+          }}>
+            <span>{formatTime(elapsed)}</span>
+            <span>{formatTime(duration)}</span>
+          </div>
+        </>
+      )}
     </div>
   )
 }
