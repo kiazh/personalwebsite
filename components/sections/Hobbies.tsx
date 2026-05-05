@@ -60,7 +60,7 @@ export function Hobbies() {
   const current = interests[active]
 
   return (
-    <section id="interests" style={{ paddingTop: '48px', paddingBottom: '20px' }}>
+    <section id="interests" style={{ paddingTop: '48px', paddingBottom: '32px' }}>
       <SectionLabel>Interests</SectionLabel>
 
       <div style={{ display: 'flex', gap: '24px', marginBottom: '28px' }}>

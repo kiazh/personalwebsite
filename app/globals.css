@@ -86,9 +86,8 @@ a {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  /* P1 fix: subtle tint makes bleed read as intentional zone, not a rendering glitch */
   background: color-mix(in oklch, var(--bg), var(--border) 28%);
-  padding: 24px 0 28px;
+  padding: 32px 0;
   margin: 0 0 16px;
 }
 
@@ -112,13 +111,13 @@ a {
 .work-card {
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 24px 28px 20px;
-  height: 180px;
+  padding: 24px 28px 22px;
+  min-height: 160px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 10px;
-  overflow: hidden;
   position: relative;
   transition: border-color 0.2s ease-out;
 }
@@ -135,8 +134,8 @@ a {
 
 .work-name {
   color: var(--fg);
-  font-weight: 500;
-  font-size: 17px;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 .work-year {

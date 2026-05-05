@@ -266,9 +266,11 @@ export function SpotifyNowPlaying() {
           }}>
             <div style={{
               height: '100%',
-              width: `${Math.min(progress * 100, 100)}%`,
+              width: '100%',
               background: 'var(--muted)',
-              transition: 'width 1s linear',
+              transform: `scaleX(${Math.min(progress, 1)})`,
+              transformOrigin: 'left',
+              transition: 'transform 1s linear',
             }} />
           </div>
           <div style={{

@@ -1,6 +1,6 @@
 export function About() {
   return (
-    <section id="about" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
+    <section id="about" style={{ paddingTop: '56px', paddingBottom: '56px' }}>
       <SectionLabel>About</SectionLabel>
       <div style={{ lineHeight: 1.8 }}>
         <p style={{ color: 'var(--fg)', marginBottom: '0px' }}>

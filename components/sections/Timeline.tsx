@@ -35,14 +35,15 @@ const events = [
 
 export function Timeline() {
   return (
-    <section id="timeline" style={{ paddingTop: '40px', paddingBottom: '64px' }}>
+    <section id="timeline" style={{ paddingTop: '56px', paddingBottom: '64px' }}>
       <SectionLabel>Timeline</SectionLabel>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
         {events.map((event, i) => (
           <div key={i} style={{ display: 'flex', gap: '32px' }}>
             <span style={{
-              color: 'var(--muted)',
+              color: 'var(--accent)',
               fontSize: '13px',
+              fontWeight: 500,
               minWidth: '36px',
               flexShrink: 0,
               paddingTop: '2px',
