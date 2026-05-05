@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { SectionLabel } from './About'
 
-type Tab = 'anime' | 'physics' | 'games'
+type Tab = 'anime' | 'physics' | 'games' | 'books'
 
 const interests: Record<Tab, { label: string; body: string }> = {
   anime: {
@@ -18,9 +18,13 @@ const interests: Record<Tab, { label: string; body: string }> = {
     label: 'Games',
     body: 'Destiny 2. Add what draws you to it.',
   },
+  books: {
+    label: 'Books',
+    body: 'Vagabond, Berserk, Blame!, Kokou no Hito. Add what you actually think about them.',
+  },
 }
 
-const tabs: Tab[] = ['anime', 'physics', 'games']
+const tabs: Tab[] = ['anime', 'physics', 'games', 'books']
 
 export function Hobbies() {
   const [active, setActive] = useState<Tab>('anime')
@@ -29,7 +33,7 @@ export function Hobbies() {
     <section id="interests" style={{ paddingTop: '48px', paddingBottom: '64px' }}>
       <SectionLabel>Interests</SectionLabel>
 
-      <div style={{ display: 'flex', gap: '24px', marginBottom: '28px' }}>
+      <div style={{ display: 'flex', gap: '24px', marginBottom: '28px', justifyContent: 'center' }}>
         {tabs.map((tab) => (
           <button
             key={tab}
