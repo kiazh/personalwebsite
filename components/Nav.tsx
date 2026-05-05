@@ -55,8 +55,9 @@ export function Nav() {
       paddingTop: '48px',
       paddingBottom: '0',
     }}>
-      <span style={{ color: 'var(--fg)', fontSize: '15px', fontWeight: 500 }}>
+      <span style={{ color: 'var(--fg)', fontSize: '15px', fontWeight: 500, display: 'flex', alignItems: 'baseline', gap: '5px' }}>
         Kiarad
+        <span lang="ja" aria-hidden="true" style={{ color: 'var(--accent)', fontWeight: 400, fontSize: '13px', opacity: 0.7 }}>影</span>
       </span>
       <nav style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
         {socialLinks.map((link) => (

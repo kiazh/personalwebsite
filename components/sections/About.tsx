@@ -16,11 +16,11 @@ export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <p style={{
       color: 'var(--muted)',
-      fontSize: '13px',
+      fontSize: '11px',
       fontWeight: 500,
-      letterSpacing: '0.06em',
+      letterSpacing: '0.1em',
       textTransform: 'uppercase',
-      marginBottom: '28px',
+      marginBottom: '24px',
     }}>
       {children}
     </p>
