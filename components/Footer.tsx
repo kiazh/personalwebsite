@@ -1,3 +1,5 @@
+'use client'
+
 const footerLinks = [
   { href: 'https://github.com/kiazh', label: 'GitHub', external: true },
   { href: 'mailto:kia.zheidari@gmail.com', label: 'Email', external: false },
