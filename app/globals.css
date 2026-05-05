@@ -48,3 +48,12 @@ a {
   * { transition-duration: 0.01ms !important; }
   html { scroll-behavior: auto; }
 }
+
+.spotify-widget {
+  display: block;
+}
+@media (max-width: 768px) {
+  .spotify-widget {
+    display: none;
+  }
+}
