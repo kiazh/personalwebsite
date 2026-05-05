@@ -40,7 +40,7 @@ export function Work() {
       <div className="work-bleed">
         <div className="work-section-inner">
           <div className="work-grid">
-            {projects.map((p, i) => (
+            {projects.map((p) => (
               <a
                 key={p.name}
                 href={p.github}
@@ -57,9 +57,6 @@ export function Work() {
                     )}
                   </div>
                   <p className="work-description">{p.description}</p>
-                  <span className="work-card-index" aria-hidden="true">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
                 </div>
               </a>
             ))}

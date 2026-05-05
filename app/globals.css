@@ -18,6 +18,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 html {
@@ -98,24 +103,6 @@ a {
 
 .work-card:hover {
   border-color: var(--muted);
-}
-
-.work-card-index {
-  position: absolute;
-  bottom: 14px;
-  right: 22px;
-  font-size: 52px;
-  font-weight: 500;
-  line-height: 1;
-  color: var(--border);
-  pointer-events: none;
-  user-select: none;
-  transition: color 0.15s ease-out;
-}
-
-.work-card:hover .work-card-index {
-  color: var(--muted);
-  opacity: 0.4;
 }
 
 .work-header {
