@@ -45,10 +45,10 @@ const interests: Record<Tab, TabContent> = {
     label: 'Goals',
     body: '',
     items: [
-      { title: 'Make a time machine before I die', note: '' },
-      { title: 'Make a plane', note: '' },
-      { title: 'Make a discovery in Physics', note: '' },
-      { title: 'Get a PhD in Physics', note: '' },
+      { title: '- Make a time machine before I die', note: ':3' },
+      { title: '- Make a plane', note: '' },
+      { title: '- Make a discovery in Physics', note: '' },
+      { title: '- Get a PhD in Physics', note: '' },
     ],
   },
 }
