@@ -56,7 +56,7 @@ export function Nav() {
       paddingBottom: '0',
     }}>
       <span style={{ color: 'var(--fg)', fontSize: '15px', fontWeight: 500 }}>
-        <span lang="fa">ایجیس</span>
+        Kiarad
       </span>
       <nav style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
         {socialLinks.map((link) => (
