@@ -21,21 +21,36 @@ const interests: Record<Tab, TabContent> = {
     label: 'Anime/Manga',
     body: 'As much as people like to clown on anime and manga, it has helped me at my lowest. The best I can describe the feeling through these is catharsis.',
     items: [
-      { title: '- Firepunch', note: 'Genuinely a masterpiece, highly underrated, better than chainsaw man imo'},
+      {title: '- Firepunch', note: 'Genuinely a masterpiece, highly underrated, better than chainsaw man imo'},
       {title: '- Vagabond', note: 'Beautiful book, I love Taoism/Daoism '},
+      {title: '- Sonny boy', note: 'It has a very similar message to NGE, stop running away'},
+      {title: '- Neon gensis Evangalion', note: 'This anime was with at my lowest. This is one which I will never forget'},
     ],
   },
   physics: {
     label: 'Physics',
-    body: "What draws me in isn't the equations—it's that physics describes reality without asking for permission. Studying the mathematical framework that underpins everything, even when the math fights back.",
+    body: 'I\'ve loved physics for a very long time, even before I knew what the subject was. Physics is what allows fiction to be a possibility; concepts like time travel, aliens, and teleportation are things that physics offers hope for and lays the groundwork for mankind\'s next steps.',
   },
   games: {
     label: 'Games',
-    body: "Destiny 2. Something about the loop—grinding, improving, the quiet satisfaction of mechanics that work. It's not about the story; it's about showing up and getting better at something that doesn't matter.",
+    body: "",
+    items: [
+      {title: '- Destiny 2', note: 'I peaked top 500 global in speedrank on raid.report'},
+      {title: '- Elden Ring', note: 'ng+7 best game ever made 10/10'},
+      {title: '- Fortnite', note: 'ik... but, I have competed and hit unreal aswell as champ league when it was in the game'},
+      {title: 'Lego marvel Super Heroes', note: 'My childhood, Ive played almost all the lego games but this one is the best 10/10.'},
+    ]
   },
   goals: {
     label: 'Goals',
-    body: 'I like burgers',
+    body: '',
+    items: [
+      {title: '- Make a time machine before I die', note:''},
+      {title: '- Make a plane', note:''},
+      {title: '- Make a discovery in Physics', note:''},
+      {title: '- Get a PhD in Physics', note:''},
+
+    ]
   },
 }
 
@@ -46,7 +61,7 @@ export function Hobbies() {
   const current = interests[active]
 
   return (
-    <section id="interests" style={{ paddingTop: '48px', paddingBottom: '64px' }}>
+    <section id="interests" style={{ paddingTop: '48px', paddingBottom: '20px' }}>
       <SectionLabel>Interests</SectionLabel>
 
       <div style={{ display: 'flex', gap: '24px', marginBottom: '28px' }}>
