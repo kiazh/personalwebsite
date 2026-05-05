@@ -86,28 +86,30 @@ export function Hobbies() {
         ))}
       </div>
 
-      {current.body && (
-        <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.75 }}>
-          {current.body}
-        </p>
-      )}
+      <div key={active} className="interests-content">
+        {current.body && (
+          <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.75 }}>
+            {current.body}
+          </p>
+        )}
 
-      {current.items && current.items.length > 0 && (
-        <ul style={{ marginTop: current.body ? '16px' : '0', listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {current.items.map((item) => (
-            <li key={item.title} style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-              <span style={{ color: 'var(--fg)', fontSize: '14px', fontWeight: 500 }}>
-                {item.title}
-              </span>
-              {item.note && (
-                <span style={{ color: 'var(--muted)', fontSize: '13px' }}>
-                  {item.note}
+        {current.items && current.items.length > 0 && (
+          <ul style={{ marginTop: current.body ? '16px' : '0', listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {current.items.map((item) => (
+              <li key={item.title} style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <span style={{ color: 'var(--fg)', fontSize: '14px', fontWeight: 500 }}>
+                  {item.title}
                 </span>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+                {item.note && (
+                  <span style={{ color: 'var(--muted)', fontSize: '13px' }}>
+                    {item.note}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </section>
   )
 }

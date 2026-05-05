@@ -27,6 +27,13 @@
   display: none;
 }
 
+/* P0 fix: focus-visible across all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 17px;
@@ -61,6 +68,17 @@ a {
   flex-direction: column;
 }
 
+/* ── Interests tab content fade ── */
+
+@keyframes interests-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.interests-content {
+  animation: interests-fade 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* ── Work section ── */
 
 .work-bleed {
@@ -68,7 +86,9 @@ a {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  padding: 0 0 16px;
+  /* P1 fix: subtle tint makes bleed read as intentional zone, not a rendering glitch */
+  background: color-mix(in oklch, var(--bg), var(--border) 28%);
+  padding: 24px 0 28px;
   margin: 0 0 16px;
 }
 
@@ -149,5 +169,17 @@ a {
   }
   .work-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* P2 fix: small mobile viewport — 375px devices */
+@media (max-width: 480px) {
+  html {
+    font-size: 16px;
+  }
+  .work-card {
+    padding: 18px 20px 16px;
+    height: auto;
+    min-height: 150px;
   }
 }
