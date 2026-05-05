@@ -12,8 +12,8 @@ export default function Home() {
       <Nav />
       <Hero />
       <About />
-      <Hobbies />
       <Work />
+      <Hobbies />
       <Timeline />
       <Footer />
     </main>
