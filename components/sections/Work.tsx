@@ -36,9 +36,9 @@ const projects = [
 export function Work() {
   return (
     <div id="work">
-      <SectionLabel>Work</SectionLabel>
       <div className="work-bleed">
         <div className="work-section-inner">
+          <SectionLabel>Work</SectionLabel>
           <div className="work-grid">
             {projects.map((p) => (
               <a

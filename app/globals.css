@@ -66,8 +66,8 @@ a {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  padding: 20px 0;
-  margin: 8px 0 16px;
+  padding: 0 0 16px;
+  margin: 0 0 16px;
 }
 
 .work-section-inner {
