@@ -1,3 +1,5 @@
+'use client'
+
 import { SectionLabel } from './About'
 
 const links = [
