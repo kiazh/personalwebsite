@@ -1,20 +1,17 @@
 export function About() {
   return (
-    <section id="about" className="py-16 border-t border-[var(--border)]">
-      <h2
-        className="text-xs font-semibold tracking-widest uppercase text-[var(--muted)] mb-8"
-        style={{ fontFamily: 'Archivo, sans-serif' }}
-      >
+    <section id="about" className="py-16">
+      <p className="text-sm font-medium mb-6" style={{ color: 'var(--muted)', fontFamily: 'var(--font-archivo), sans-serif' }}>
         About
-      </h2>
-      <div className="space-y-4 text-[var(--foreground)] leading-relaxed max-w-xl">
+      </p>
+      <div className="max-w-lg space-y-4 leading-relaxed" style={{ color: 'var(--fg)' }}>
         <p>
-          Add your bio here. Talk about what you do, what you&apos;re interested in,
-          and what drives you.
+          Write something real here. Not a resume summary — something a person would actually say.
+          What you care about, what you&apos;re trying to do.
         </p>
         <p>
-          Second paragraph — background, experience, or anything else you want
-          people to know.
+          Second thought. Could be where you went to school, what you were obsessed with growing up,
+          or what you&apos;re figuring out right now.
         </p>
       </div>
     </section>

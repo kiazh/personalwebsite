@@ -1,72 +1,63 @@
-import { ArrowUpRight } from 'lucide-react'
+'use client'
 
 const projects = [
   {
     name: 'Project One',
-    description: 'Add your project description here. What it does, what problem it solves, what stack you used.',
+    description: 'What it does and why you built it.',
     github: 'https://github.com/yourusername/project-one',
-    tags: ['React', 'TypeScript'],
+    year: '2025',
   },
   {
     name: 'Project Two',
-    description: 'Add your project description here. What it does, what problem it solves, what stack you used.',
+    description: 'What it does and why you built it.',
     github: 'https://github.com/yourusername/project-two',
-    tags: ['Python', 'FastAPI'],
+    year: '2025',
   },
   {
     name: 'Project Three',
-    description: 'Add your project description here. What it does, what problem it solves, what stack you used.',
+    description: 'What it does and why you built it.',
     github: 'https://github.com/yourusername/project-three',
-    tags: ['Next.js', 'Tailwind'],
+    year: '2024',
   },
 ]
 
 export function Work() {
   return (
-    <section id="work" className="py-16 border-t border-[var(--border)]">
-      <h2
-        className="text-xs font-semibold tracking-widest uppercase text-[var(--muted)] mb-8"
-        style={{ fontFamily: 'Archivo, sans-serif' }}
-      >
+    <section id="work" className="py-16">
+      <p className="text-sm font-medium mb-6" style={{ color: 'var(--muted)', fontFamily: 'var(--font-archivo), sans-serif' }}>
         Work
-      </h2>
-      <div className="space-y-px">
+      </p>
+      <div className="space-y-8">
         {projects.map((project) => (
-          <a
-            key={project.name}
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-8 py-5 border-b border-[var(--border)] hover:bg-[var(--card)] -mx-4 px-4 rounded-lg transition-colors duration-150 cursor-pointer"
-          >
-            <div className="flex-1 min-w-0 space-y-1.5">
-              <div className="flex items-center gap-2">
-                <span
-                  className="font-medium text-[var(--foreground)] group-hover:underline underline-offset-4"
-                  style={{ fontFamily: 'Archivo, sans-serif' }}
-                >
-                  {project.name}
-                </span>
-                <ArrowUpRight
-                  size={14}
-                  className="text-[var(--muted)] opacity-0 group-hover:opacity-100 transition-opacity duration-150 shrink-0"
-                />
-              </div>
-              <p className="text-sm text-[var(--muted)] leading-relaxed">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 pt-1">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2 py-0.5 rounded-full bg-[var(--border)] text-[var(--muted)]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+          <div key={project.name} className="group">
+            <div className="flex items-baseline gap-3 mb-1">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium transition-colors duration-150 cursor-pointer"
+                style={{
+                  color: 'var(--fg)',
+                  fontFamily: 'var(--font-archivo), sans-serif',
+                  textDecorationLine: 'underline',
+                  textUnderlineOffset: '4px',
+                  textDecorationColor: 'transparent',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'var(--fg)'
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'transparent'
+                }}
+              >
+                {project.name}
+              </a>
+              <span className="text-xs" style={{ color: 'var(--muted)' }}>{project.year}</span>
             </div>
-          </a>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+              {project.description}
+            </p>
+          </div>
         ))}
       </div>
     </section>

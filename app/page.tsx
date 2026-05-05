@@ -8,16 +8,14 @@ import { Footer } from '@/components/Footer'
 
 export default function Home() {
   return (
-    <>
+    <main className="max-w-xl mx-auto px-6 min-h-screen">
       <Nav />
-      <main className="max-w-2xl mx-auto px-6">
-        <Hero />
-        <About />
-        <Work />
-        <Hobbies />
-        <Contact />
-        <Footer />
-      </main>
-    </>
+      <Hero />
+      <About />
+      <Work />
+      <Hobbies />
+      <Contact />
+      <Footer />
+    </main>
   )
 }

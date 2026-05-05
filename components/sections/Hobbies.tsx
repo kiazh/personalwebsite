@@ -1,43 +1,28 @@
 const hobbies = [
-  {
-    name: 'Hobby One',
-    description: 'Add your description here.',
-  },
-  {
-    name: 'Hobby Two',
-    description: 'Add your description here.',
-  },
-  {
-    name: 'Hobby Three',
-    description: 'Add your description here.',
-  },
-  {
-    name: 'Hobby Four',
-    description: 'Add your description here.',
-  },
+  { name: 'Hobby One', description: 'Your description here.' },
+  { name: 'Hobby Two', description: 'Your description here.' },
+  { name: 'Hobby Three', description: 'Your description here.' },
+  { name: 'Hobby Four', description: 'Your description here.' },
 ]
 
 export function Hobbies() {
   return (
-    <section id="hobbies" className="py-16 border-t border-[var(--border)]">
-      <h2
-        className="text-xs font-semibold tracking-widest uppercase text-[var(--muted)] mb-8"
-        style={{ fontFamily: 'Archivo, sans-serif' }}
-      >
-        Hobbies
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {hobbies.map((hobby) => (
-          <div key={hobby.name} className="space-y-1.5">
-            <h3
-              className="font-medium text-[var(--foreground)] text-sm"
-              style={{ fontFamily: 'Archivo, sans-serif' }}
+    <section id="hobbies" className="py-16">
+      <p className="text-sm font-medium mb-6" style={{ color: 'var(--muted)', fontFamily: 'var(--font-archivo), sans-serif' }}>
+        Outside work
+      </p>
+      <div className="space-y-5 max-w-lg">
+        {hobbies.map((h) => (
+          <div key={h.name} className="flex gap-6">
+            <span
+              className="text-sm shrink-0 pt-px"
+              style={{ color: 'var(--fg)', fontFamily: 'var(--font-archivo), sans-serif', minWidth: '110px' }}
             >
-              {hobby.name}
-            </h3>
-            <p className="text-sm text-[var(--muted)] leading-relaxed">
-              {hobby.description}
-            </p>
+              {h.name}
+            </span>
+            <span className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+              {h.description}
+            </span>
           </div>
         ))}
       </div>

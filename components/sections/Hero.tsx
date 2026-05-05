@@ -1,20 +1,16 @@
 export function Hero() {
   return (
-    <section className="pt-32 pb-20">
-      <div className="space-y-4">
-        <p className="text-sm text-[var(--muted)] font-medium tracking-wide uppercase">
-          Available for work
-        </p>
-        <h1
-          className="text-4xl sm:text-5xl font-semibold tracking-tight text-[var(--foreground)] leading-[1.15]"
-          style={{ fontFamily: 'Archivo, sans-serif' }}
-        >
-          Your Name
-        </h1>
-        <p className="text-lg text-[var(--muted)] max-w-md leading-relaxed">
-          Software engineer building things on the web. Based in [City].
-        </p>
-      </div>
+    <section className="pt-24 pb-16">
+      <h1
+        className="text-5xl sm:text-6xl font-semibold tracking-tight leading-[1.1] mb-6"
+        style={{ fontFamily: 'var(--font-archivo), sans-serif', color: 'var(--fg)' }}
+      >
+        Your Name
+      </h1>
+      <p className="text-lg max-w-lg leading-relaxed" style={{ color: 'var(--muted)' }}>
+        I build software. Based in [City].{' '}
+        Currently working on [what you&apos;re doing now].
+      </p>
     </section>
   )
 }
