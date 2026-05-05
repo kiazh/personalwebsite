@@ -3,6 +3,7 @@ import { EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { SpotifyNowPlaying } from "@/components/SpotifyNowPlaying";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -27,7 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={ebGaramond.variable}>
       <body className="min-h-screen">
-        <Providers>{children}</Providers>
+        <ErrorBoundary>
+          <Providers>{children}</Providers>
+        </ErrorBoundary>
         <SpotifyNowPlaying />
       </body>
     </html>

@@ -9,23 +9,81 @@ interface SpotifyData {
   timestamps: { start: number; end: number } | null
 }
 
+interface LanyardData {
+  success: boolean
+  data?: {
+    spotify?: {
+      song: string
+      artist: string
+      track_id: string
+      timestamps?: { start: number; end: number }
+    }
+    discord_user?: {
+      username: string
+    }
+  }
+}
+
+const LANYARD_API = 'https://api.lanyard.rest/v1/users/431549003449237505'
+const FETCH_TIMEOUT = 10000 // 10 seconds
+const POLL_INTERVAL = 30000 // 30 seconds
+
 function formatTime(ms: number): string {
   const s = Math.floor(ms / 1000)
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
 }
 
+function formatCurrentTime(): string {
+  const now = new Date()
+  const hours = now.getHours()
+  const minutes = String(now.getMinutes()).padStart(2, '0')
+  return `${hours}:${minutes}`
+}
+
+function truncate(text: string, maxLength: number): string {
+  if (!text || text.length <= maxLength) return text
+  return text.slice(0, maxLength - 1) + '…'
+}
+
 export function SpotifyNowPlaying() {
   const [spotify, setSpotify] = useState<SpotifyData | null>(null)
+  const [discordUsername, setDiscordUsername] = useState<string>('')
   const [progress, setProgress] = useState(0)
   const [elapsed, setElapsed] = useState(0)
+  const [currentTime, setCurrentTime] = useState(formatCurrentTime())
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const timeRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const abortControllerRef = useRef<AbortController | null>(null)
 
-  useEffect(() => {
-    const fetchSpotify = async () => {
-      try {
-        const res = await fetch('https://api.lanyard.rest/v1/users/431549003449237505')
-        const data = await res.json()
-        if (data.success && data.data?.spotify) {
+  const fetchWithTimeout = async (url: string, signal?: AbortSignal): Promise<Response> => {
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT)
+
+    try {
+      const response = await fetch(url, { signal: signal || controller.signal })
+      clearTimeout(timeoutId)
+      return response
+    } catch (err) {
+      clearTimeout(timeoutId)
+      throw err
+    }
+  }
+
+  const fetchSpotify = async () => {
+    if (abortControllerRef.current?.signal.aborted) return
+
+    try {
+      const res = await fetchWithTimeout(LANYARD_API, abortControllerRef.current?.signal)
+      const data: LanyardData = await res.json()
+
+      if (data.success) {
+        if (data.data?.discord_user?.username) {
+          setDiscordUsername(data.data.discord_user.username)
+        }
+        if (data.data?.spotify) {
           const s = data.data.spotify
           setSpotify({
             track: s.song,
@@ -33,17 +91,44 @@ export function SpotifyNowPlaying() {
             url: `https://open.spotify.com/track/${s.track_id}`,
             timestamps: s.timestamps ?? null,
           })
+          setError(null)
         } else {
           setSpotify(null)
         }
-      } catch {
-        // silent fail
+      } else {
+        setSpotify(null)
       }
+      setIsLoading(false)
+    } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') {
+        return
+      }
+      setError('Failed to load')
+      setIsLoading(false)
     }
+  }
 
+  useEffect(() => {
+    abortControllerRef.current = new AbortController()
     fetchSpotify()
-    const poll = setInterval(fetchSpotify, 30000)
-    return () => clearInterval(poll)
+    pollRef.current = setInterval(fetchSpotify, POLL_INTERVAL)
+
+    return () => {
+      abortControllerRef.current?.abort()
+      if (pollRef.current) clearInterval(pollRef.current)
+      if (tickRef.current) clearInterval(tickRef.current)
+      if (timeRef.current) clearInterval(timeRef.current)
+    }
+  }, [])
+
+  // Update current time every second
+  useEffect(() => {
+    const timeTick = () => setCurrentTime(formatCurrentTime())
+    timeTick()
+    timeRef.current = setInterval(timeTick, 1000)
+    return () => {
+      if (timeRef.current) clearInterval(timeRef.current)
+    }
   }, [])
 
   // tick progress every second using timestamps from API
@@ -61,12 +146,69 @@ export function SpotifyNowPlaying() {
 
     tick()
     tickRef.current = setInterval(tick, 1000)
-    return () => { if (tickRef.current) clearInterval(tickRef.current) }
+    return () => {
+      if (tickRef.current) clearInterval(tickRef.current)
+    }
   }, [spotify])
 
-  if (!spotify) return null
+  if (isLoading) {
+    return (
+      <div
+        className="spotify-widget"
+        style={{
+          position: 'fixed',
+          bottom: '32px',
+          left: '32px',
+          fontFamily: 'var(--font-eb-garamond)',
+          lineHeight: 1.4,
+        }}
+      >
+        <span style={{ color: 'var(--muted)', fontSize: '13px', marginBottom: '4px' }}>status</span>
+        <div style={{
+          color: 'var(--muted)',
+          fontSize: '18px',
+          fontWeight: 400,
+        }}>
+          loading…
+        </div>
+      </div>
+    )
+  }
+
+  if (!spotify) {
+    return (
+      <div
+        className="spotify-widget"
+        style={{
+          position: 'fixed',
+          bottom: '32px',
+          left: '32px',
+          fontFamily: 'var(--font-eb-garamond)',
+          lineHeight: 1.4,
+        }}
+      >
+        <span style={{ color: 'var(--muted)', fontSize: '13px', marginBottom: '4px' }}>status</span>
+        <div style={{
+          color: 'var(--fg)',
+          fontSize: '18px',
+          fontWeight: 500,
+        }}>
+          {truncate(discordUsername || 'offline', 25)}
+        </div>
+        <span style={{
+          color: 'var(--muted)',
+          fontSize: '14px',
+          marginTop: '2px',
+        }}>
+          offline · {currentTime}
+        </span>
+      </div>
+    )
+  }
 
   const duration = spotify.timestamps ? spotify.timestamps.end - spotify.timestamps.start : 0
+  const maxTrackWidth = 220
+  const maxArtistWidth = 220
 
   return (
     <div
@@ -79,17 +221,17 @@ export function SpotifyNowPlaying() {
         lineHeight: 1.4,
       }}
     >
-      <span style={{ color: 'var(--muted)', fontSize: '12px', marginBottom: '4px' }}>listening to</span>
+      <span style={{ color: 'var(--muted)', fontSize: '13px', marginBottom: '4px' }}>listening to</span>
       <a
         href={spotify.url}
         target="_blank"
         rel="noopener noreferrer"
         style={{
           color: 'var(--fg)',
-          fontSize: '16px',
+          fontSize: '18px',
           fontWeight: 500,
           textDecoration: 'none',
-          maxWidth: '200px',
+          maxWidth: `${maxTrackWidth}px`,
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
@@ -98,25 +240,25 @@ export function SpotifyNowPlaying() {
         onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--muted)')}
         onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--fg)')}
       >
-        {spotify.track}
+        {truncate(spotify.track, maxTrackWidth)}
       </a>
       <span style={{
         color: 'var(--muted)',
-        fontSize: '13px',
+        fontSize: '14px',
         marginTop: '2px',
-        maxWidth: '200px',
+        maxWidth: `${maxArtistWidth}px`,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       }}>
-        {spotify.artist}
+        {truncate(spotify.artist, maxArtistWidth)}
       </span>
 
       {duration > 0 && (
         <>
           <div style={{
             marginTop: '10px',
-            width: '200px',
+            width: `${maxTrackWidth}px`,
             height: '2px',
             background: 'var(--border)',
             borderRadius: '1px',
@@ -132,7 +274,7 @@ export function SpotifyNowPlaying() {
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
-            width: '200px',
+            width: `${maxTrackWidth}px`,
             marginTop: '5px',
             fontSize: '11px',
             color: 'var(--muted)',

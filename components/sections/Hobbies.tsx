@@ -3,6 +3,14 @@
 import { useState } from 'react'
 import { SectionLabel } from './About'
 
+const MAX_TITLE_LENGTH = 40
+const MAX_NOTE_LENGTH = 80
+
+function truncate(text: string, maxLength: number): string {
+  if (!text || text.length <= maxLength) return text
+  return text.slice(0, maxLength - 1) + '…'
+}
+
 type Tab = 'anime' | 'physics' | 'games' | 'goals'
 
 type TabItem = {
@@ -96,10 +104,10 @@ export function Hobbies() {
           {current.items.map((item) => (
             <li key={item.title} style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
               <span style={{ color: 'var(--fg)', fontSize: '14px', fontWeight: 500 }}>
-                {item.title}
+                {truncate(item.title, MAX_TITLE_LENGTH)}
               </span>
               <span style={{ color: 'var(--muted)', fontSize: '13px' }}>
-                {item.note}
+                {truncate(item.note, MAX_NOTE_LENGTH)}
               </span>
             </li>
           ))}

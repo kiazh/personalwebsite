@@ -2,10 +2,17 @@
 
 import { SectionLabel } from './About'
 
+const MAX_DESCRIPTION_LENGTH = 120
+
+function truncate(text: string, maxLength: number): string {
+  if (!text || text.length <= maxLength) return text
+  return text.slice(0, maxLength - 1) + '…'
+}
+
 const projects = [
   {
-    name: 'OpenCVProj',
-    description: 'Computer vision and TensorFlow projects. Object detection, image processing, and neural networks applied to real problems.',
+    name: 'OpenCV',
+    description: 'A collection of computer vision projects built with OpenCV and TensorFlow. The highlight is a Siamese neural network for one-shot face verification . It compares image pairs to confirm identity without ever needing to retrain when new people are added. Also includes a text scanner  ',
     github: 'https://github.com/kiazh/OpenCVProj',
     year: '2026',
     status: 'ongoing',
@@ -39,6 +46,7 @@ const projects = [
 
 export function Work() {
   return (
+
     <section id="work" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
       <SectionLabel>Work</SectionLabel>
       <div className="work-grid">
@@ -53,7 +61,7 @@ export function Work() {
               display: 'block',
             }}
           >
-            <div className="work-card">
+            <div className="work-card" style={{ padding: '48px' }}>
               <div className="work-content">
                 <div className="work-header">
                   <span className="work-name">
@@ -66,14 +74,17 @@ export function Work() {
                     </span>
                   )}
                 </div>
-                <p className="work-description">
-                  {p.description}
+
+                <p className="work-description" style={{ fontSize: '17px', lineHeight: 1.8 }}>
+                  {truncate(p.description, MAX_DESCRIPTION_LENGTH)}
                 </p>
+
               </div>
             </div>
           </a>
         ))}
       </div>
     </section>
+
   )
 }

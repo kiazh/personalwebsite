@@ -1,0 +1,22 @@
+{
+  "id": "a70a5ee3",
+  "phase": "variants_ready",
+  "pageUrl": "/",
+  "sourceFile": "components/sections/Work.tsx",
+  "expectedVariants": 3,
+  "arrivedVariants": 3,
+  "visibleVariant": 1,
+  "paramValues": {
+    "card-padding": 32
+  },
+  "pendingEventSeq": null,
+  "pendingEvent": null,
+  "deliveryLease": null,
+  "checkpointRevision": 59,
+  "activeOwner": "492e062c",
+  "sourceMarkers": {},
+  "fallbackMode": null,
+  "annotationArtifacts": [],
+  "diagnostics": [],
+  "updatedAt": "2026-05-05T22:38:09.695Z"
+}

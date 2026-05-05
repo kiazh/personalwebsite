@@ -58,6 +58,8 @@ a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .work-card {
@@ -73,7 +75,7 @@ a {
 }
 
 .work-content {
-  padding: 20px;
+  padding: 24px;
 }
 
 .work-header {

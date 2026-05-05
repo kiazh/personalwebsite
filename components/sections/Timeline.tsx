@@ -1,5 +1,13 @@
 import { SectionLabel } from './About'
 
+const MAX_TITLE_LENGTH = 30
+const MAX_DESCRIPTION_LENGTH = 100
+
+function truncate(text: string, maxLength: number): string {
+  if (!text || text.length <= maxLength) return text
+  return text.slice(0, maxLength - 1) + '…'
+}
+
 const events = [
   {
     year: '2026',
@@ -53,7 +61,7 @@ export function Timeline() {
             <div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px', marginBottom: '5px' }}>
                 <span style={{ color: 'var(--fg)', fontSize: '15px', fontWeight: 500 }}>
-                  {event.title}
+                  {truncate(event.title, MAX_TITLE_LENGTH)}
                 </span>
                 {event.ongoing && (
                   <span style={{ color: 'var(--muted)', fontSize: '12px', fontStyle: 'italic' }}>
@@ -62,7 +70,7 @@ export function Timeline() {
                 )}
               </div>
               <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.7 }}>
-                {event.description}
+                {truncate(event.description, MAX_DESCRIPTION_LENGTH)}
               </p>
             </div>
           </div>

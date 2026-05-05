@@ -2,6 +2,13 @@
 
 import { SectionLabel } from './About'
 
+const MAX_VALUE_LENGTH = 40
+
+function truncate(text: string, maxLength: number): string {
+  if (!text || text.length <= maxLength) return text
+  return text.slice(0, maxLength - 1) + '…'
+}
+
 const links = [
   { label: 'email', value: 'kia.zheidari@gmail.com', href: 'mailto:kia.zheidari@gmail.com' },
   { label: 'github', value: 'kiazh', href: 'https://github.com/kiazh' },
@@ -40,10 +47,10 @@ export function Contact() {
                 onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'var(--muted)')}
                 onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'transparent')}
               >
-                {link.value}
+                {truncate(link.value, MAX_VALUE_LENGTH)}
               </a>
             ) : (
-              <span style={{ color: 'var(--fg)', fontSize: '15px' }}>{link.value}</span>
+              <span style={{ color: 'var(--fg)', fontSize: '15px' }}>{truncate(link.value, MAX_VALUE_LENGTH)}</span>
             )}
           </div>
         ))}
