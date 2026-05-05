@@ -29,8 +29,7 @@ export function Hero() {
         lineHeight: 1.7,
         fontSize: '17px',
       }}>
-        Mathematical Physics @ Waterloo. I build systems from the ground up —
-        abstractions are useful, but I like knowing how things actually work.
+        Mathematical Physics @ Waterloo. Systems Programming, Machine Learning, Low-Level Development
       </p>
     </section>
   )
