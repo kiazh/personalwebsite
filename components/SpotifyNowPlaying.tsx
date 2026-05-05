@@ -75,8 +75,6 @@ export function SpotifyNowPlaying() {
         position: 'fixed',
         bottom: '32px',
         left: '32px',
-        display: 'flex',
-        flexDirection: 'column',
         fontFamily: 'var(--font-eb-garamond)',
         lineHeight: 1.4,
       }}
