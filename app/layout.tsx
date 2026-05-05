@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
+import { EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
-import { Archivo, Space_Grotesk } from "next/font/google";
 
-const archivo = Archivo({
+const ebGaramond = EB_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-archivo",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600"],
+  variable: "--font-eb-garamond",
 });
 
 export const metadata: Metadata = {
-  title: "Your Name",
-  description: "Personal website",
+  title: "Kiarad",
+  description: "Mathematical Physics student at Waterloo. Building things from scratch.",
 };
 
 export default function RootLayout({
@@ -26,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${spaceGrotesk.variable}`}>
-      <body className="min-h-screen antialiased">
+    <html lang="en" suppressHydrationWarning className={ebGaramond.variable}>
+      <body className="min-h-screen">
         <Providers>{children}</Providers>
       </body>
     </html>

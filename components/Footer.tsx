@@ -1,8 +1,8 @@
 export function Footer() {
   return (
-    <footer className="pb-10">
-      <p className="text-xs" style={{ color: 'var(--muted)' }}>
-        © {new Date().getFullYear()}
+    <footer style={{ paddingBottom: '40px' }}>
+      <p style={{ color: 'var(--muted)', fontSize: '13px' }}>
+        {new Date().getFullYear()}
       </p>
     </footer>
   )

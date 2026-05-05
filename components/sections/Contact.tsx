@@ -1,40 +1,42 @@
 'use client'
 
+import { SectionLabel } from './About'
+
 const links = [
-  { label: 'Email', href: 'mailto:you@email.com' },
-  { label: 'GitHub', href: 'https://github.com/yourusername' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/yourusername' },
-  { label: 'Twitter', href: 'https://twitter.com/yourusername' },
+  { label: 'email', href: 'mailto:you@email.com' },
+  { label: 'github', href: 'https://github.com/kiazh' },
+  { label: 'mal', href: 'https://myanimelist.net/profile/ki_shadow' },
 ]
 
 export function Contact() {
   return (
-    <section id="contact" className="py-16 pb-24">
-      <p className="text-sm font-medium mb-6" style={{ color: 'var(--muted)', fontFamily: 'var(--font-archivo), sans-serif' }}>
-        Contact
-      </p>
-      <p className="text-sm max-w-sm mb-8 leading-relaxed" style={{ color: 'var(--muted)' }}>
-        Always open to interesting conversations.
-      </p>
-      <div className="flex flex-wrap gap-x-6 gap-y-2">
+    <section id="contact" style={{ paddingTop: '64px', paddingBottom: '96px' }}>
+      <SectionLabel>Contact</SectionLabel>
+      <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
         {links.map((link) => (
           <a
             key={link.label}
             href={link.href}
             target={link.href.startsWith('mailto') ? undefined : '_blank'}
             rel="noopener noreferrer"
-            className="text-sm transition-colors duration-150 cursor-pointer"
             style={{
-              color: 'var(--fg)',
-              textDecorationLine: 'underline',
+              color: 'var(--muted)',
+              fontSize: '15px',
+              textDecoration: 'underline',
               textUnderlineOffset: '4px',
               textDecorationColor: 'transparent',
+              transition: 'color 0.15s ease, text-decoration-color 0.15s ease',
+              cursor: 'pointer',
             }}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'var(--fg)'
+              const el = e.currentTarget as HTMLAnchorElement
+              el.style.color = 'var(--fg)'
+              el.style.textDecorationColor = 'var(--fg)'
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'transparent'
+              const el = e.currentTarget as HTMLAnchorElement
+              el.style.color = 'var(--muted)'
+              el.style.textDecorationColor = 'transparent'
             }}
           >
             {link.label}

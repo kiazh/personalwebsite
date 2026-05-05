@@ -8,7 +8,7 @@ import { Footer } from '@/components/Footer'
 
 export default function Home() {
   return (
-    <main className="max-w-xl mx-auto px-6 min-h-screen">
+    <main style={{ maxWidth: '640px', margin: '0 auto', padding: '0 24px', minHeight: '100vh' }}>
       <Nav />
       <Hero />
       <About />

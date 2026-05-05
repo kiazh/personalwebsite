@@ -1,15 +1,24 @@
 export function Hero() {
   return (
-    <section className="pt-24 pb-16">
-      <h1
-        className="text-5xl sm:text-6xl font-semibold tracking-tight leading-[1.1] mb-6"
-        style={{ fontFamily: 'var(--font-archivo), sans-serif', color: 'var(--fg)' }}
-      >
-        Your Name
+    <section style={{ paddingTop: '80px', paddingBottom: '64px' }}>
+      <h1 style={{
+        fontSize: 'clamp(2.6rem, 6vw, 4rem)',
+        fontWeight: 500,
+        lineHeight: 1.1,
+        letterSpacing: '-0.01em',
+        color: 'var(--fg)',
+        marginBottom: '24px',
+      }}>
+        Kiarad
       </h1>
-      <p className="text-lg max-w-lg leading-relaxed" style={{ color: 'var(--muted)' }}>
-        I build software. Based in [City].{' '}
-        Currently working on [what you&apos;re doing now].
+      <p style={{
+        color: 'var(--muted)',
+        maxWidth: '440px',
+        lineHeight: 1.7,
+        fontSize: '17px',
+      }}>
+        Mathematical Physics, Waterloo. I build things from scratch{' '}
+        and try to understand why they work.
       </p>
     </section>
   )

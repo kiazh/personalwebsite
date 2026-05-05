@@ -9,18 +9,26 @@ export function ThemeToggle() {
 
   useEffect(() => setMounted(true), [])
 
-  if (!mounted) return <div className="w-8 h-5" />
+  if (!mounted) return <span style={{ color: 'var(--muted)', fontSize: '14px', width: '32px', display: 'inline-block' }} />
 
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       aria-label="Toggle theme"
-      className="text-sm transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:underline"
-      style={{ color: 'var(--muted)' }}
-      onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
-      onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}
+      style={{
+        color: 'var(--muted)',
+        fontSize: '14px',
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: 0,
+        fontFamily: 'inherit',
+        transition: 'color 0.15s ease',
+      }}
+      onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.color = 'var(--fg)')}
+      onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.color = 'var(--muted)')}
     >
-      {theme === 'dark' ? 'Light' : 'Dark'}
+      {theme === 'dark' ? 'light' : 'dark'}
     </button>
   )
 }

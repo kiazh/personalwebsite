@@ -1,61 +1,59 @@
 'use client'
 
+import { SectionLabel } from './About'
+
 const projects = [
   {
-    name: 'Project One',
-    description: 'What it does and why you built it.',
-    github: 'https://github.com/yourusername/project-one',
+    name: 'MLscratch',
+    description: 'Machine learning library in C, from scratch. No abstractions, just math and memory.',
+    github: 'https://github.com/kiazh/MLscratch',
     year: '2025',
   },
   {
-    name: 'Project Two',
-    description: 'What it does and why you built it.',
-    github: 'https://github.com/yourusername/project-two',
+    name: 'AES-128',
+    description: 'Cryptographic encryption implemented from first principles in Go, with a C port in progress.',
+    github: 'https://github.com/kiazh/AES-128',
     year: '2025',
   },
   {
-    name: 'Project Three',
-    description: 'What it does and why you built it.',
-    github: 'https://github.com/yourusername/project-three',
+    name: 'Esp32Network',
+    description: 'Embedded ML pipeline for wireless link quality classification on an ESP32.',
+    github: 'https://github.com/kiazh/Esp32Network',
     year: '2024',
   },
 ]
 
 export function Work() {
   return (
-    <section id="work" className="py-16">
-      <p className="text-sm font-medium mb-6" style={{ color: 'var(--muted)', fontFamily: 'var(--font-archivo), sans-serif' }}>
-        Work
-      </p>
-      <div className="space-y-8">
-        {projects.map((project) => (
-          <div key={project.name} className="group">
-            <div className="flex items-baseline gap-3 mb-1">
+    <section id="work" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
+      <SectionLabel>Work</SectionLabel>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
+        {projects.map((p) => (
+          <div key={p.name}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '6px' }}>
               <a
-                href={project.github}
+                href={p.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium transition-colors duration-150 cursor-pointer"
                 style={{
                   color: 'var(--fg)',
-                  fontFamily: 'var(--font-archivo), sans-serif',
-                  textDecorationLine: 'underline',
+                  fontWeight: 500,
+                  fontSize: '17px',
+                  textDecoration: 'underline',
                   textUnderlineOffset: '4px',
                   textDecorationColor: 'transparent',
+                  transition: 'text-decoration-color 0.15s ease',
+                  cursor: 'pointer',
                 }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'var(--fg)'
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'transparent'
-                }}
+                onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'var(--muted)')}
+                onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'transparent')}
               >
-                {project.name}
+                {p.name}
               </a>
-              <span className="text-xs" style={{ color: 'var(--muted)' }}>{project.year}</span>
+              <span style={{ color: 'var(--muted)', fontSize: '13px' }}>{p.year}</span>
             </div>
-            <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-              {project.description}
+            <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.7, maxWidth: '460px' }}>
+              {p.description}
             </p>
           </div>
         ))}
