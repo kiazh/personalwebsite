@@ -33,7 +33,7 @@ export function Hobbies() {
     <section id="interests" style={{ paddingTop: '48px', paddingBottom: '64px' }}>
       <SectionLabel>Interests</SectionLabel>
 
-      <div style={{ display: 'flex', gap: '24px', marginBottom: '28px', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', gap: '24px', marginBottom: '28px' }}>
         {tabs.map((tab) => (
           <button
             key={tab}
