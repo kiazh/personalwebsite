@@ -54,13 +54,15 @@ a {
   flex-direction: column;
 }
 
+/* ── Work section ── */
+
 .work-bleed {
   width: 100vw;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  padding: 32px 0;
-  margin: 24px 0 64px;
+  padding: 20px 0;
+  margin: 8px 0 16px;
 }
 
 .work-section-inner {
@@ -72,8 +74,7 @@ a {
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 24px;
+  gap: 14px;
 }
 
 .work-link {
@@ -83,14 +84,15 @@ a {
 
 .work-card {
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 28px 32px;
+  border-radius: 6px;
+  padding: 24px 28px 20px;
   height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 12px;
+  gap: 10px;
   overflow: hidden;
+  position: relative;
   transition: border-color 0.15s ease-out;
 }
 
@@ -98,17 +100,34 @@ a {
   border-color: var(--muted);
 }
 
+.work-card-index {
+  position: absolute;
+  bottom: 14px;
+  right: 22px;
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--border);
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.15s ease-out;
+}
+
+.work-card:hover .work-card-index {
+  color: var(--muted);
+  opacity: 0.4;
+}
+
 .work-header {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin-bottom: 12px;
 }
 
 .work-name {
   color: var(--fg);
   font-weight: 500;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .work-year {
