@@ -8,7 +8,9 @@
       "WebFetch(domain:api.lanyard.rest)",
       "Bash(npm run *)",
       "Bash(git pull *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }
