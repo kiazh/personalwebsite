@@ -72,19 +72,19 @@ export function SpotifyNowPlaying() {
     <div style={{
       position: 'fixed',
       top: '48px',
-      left: '24px',
-      width: '190px',
+      right: '24px',
+      width: '210px',
       fontFamily: 'var(--font-eb-garamond)',
       lineHeight: 1.4,
     }}>
-      <span style={{ color: 'var(--muted)', fontSize: '12px' }}>listening to</span>
+      <span style={{ color: 'var(--muted)', fontSize: '13px' }}>listening to</span>
       <a
         href={spotify.url}
         target="_blank"
         rel="noopener noreferrer"
         style={{
           color: 'var(--fg)',
-          fontSize: '14px',
+          fontSize: '16px',
           fontWeight: 500,
           textDecoration: 'none',
           display: 'block',
@@ -101,7 +101,7 @@ export function SpotifyNowPlaying() {
       </a>
       <span style={{
         color: 'var(--muted)',
-        fontSize: '12px',
+        fontSize: '13px',
         display: 'block',
         marginTop: '2px',
         overflow: 'hidden',

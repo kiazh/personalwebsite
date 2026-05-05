@@ -5,7 +5,7 @@ import { SectionLabel } from './About'
 
 type Tab = 'reading' | 'anime' | 'physics' | 'games'
 
-const interests: Record<Tab, { label: string; items: { title: string; note: string }[] }> = {
+const interests: Record<Tab, { label: string; items: { title: string; note: string; href?: string }[] }> = {
   reading: {
     label: 'Reading',
     items: [
@@ -21,6 +21,7 @@ const interests: Record<Tab, { label: string; items: { title: string; note: stri
       { title: 'Evangelion', note: 'Add what you actually think about it.' },
       { title: 'Steins;Gate', note: 'Add what you actually think about it.' },
       { title: 'Made in Abyss', note: 'Add what you actually think about it.' },
+      { title: 'MAL', note: 'ki_shadow', href: 'https://myanimelist.net/profile/ki_shadow' },
     ],
   },
   physics: {
@@ -83,9 +84,30 @@ export function Hobbies() {
             }}>
               {item.title}
             </span>
-            <span style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.7 }}>
-              {item.note}
-            </span>
+            {item.href ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'var(--muted)',
+                  fontSize: '15px',
+                  lineHeight: 1.7,
+                  textDecoration: 'underline',
+                  textUnderlineOffset: '4px',
+                  textDecorationColor: 'transparent',
+                  transition: 'text-decoration-color 0.15s ease',
+                }}
+                onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'var(--muted)')}
+                onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.textDecorationColor = 'transparent')}
+              >
+                {item.note}
+              </a>
+            ) : (
+              <span style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.7 }}>
+                {item.note}
+              </span>
+            )}
           </div>
         ))}
       </div>
