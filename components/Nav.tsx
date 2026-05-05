@@ -66,6 +66,7 @@ export function Nav() {
             target={link.external ? '_blank' : undefined}
             rel={link.external ? 'noopener noreferrer' : undefined}
             aria-label={link.label}
+            className={link.label === 'Discord' || link.label === 'MyAnimeList' ? 'nav-icon-hide' : undefined}
             style={{
               color: 'var(--muted)',
               display: 'flex',

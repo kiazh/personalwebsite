@@ -9,6 +9,11 @@ const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond",
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
   title: "Kiarad",
   description: "Mathematical Physics student at Waterloo. Building things from scratch.",
