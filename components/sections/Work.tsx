@@ -36,8 +36,10 @@ const projects = [
 export function Work() {
   return (
     <section id="work" className="work-section">
-      <div className="work-section-inner">
+      <div className="work-label-wrapper">
         <SectionLabel>Work</SectionLabel>
+      </div>
+      <div className="work-section-inner">
         <div className="work-grid">
           {projects.map((p) => (
             <a
