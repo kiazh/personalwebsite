@@ -1,9 +1,10 @@
 'use client'
 
 const footerLinks = [
-  { href: 'https://github.com/kiazh', label: 'GitHub', external: true },
-  { href: 'mailto:kia.zheidari@gmail.com', label: 'Email', external: false },
-  { href: 'https://myanimelist.net/profile/ki_shadow', label: 'MyAnimeList', external: true },
+  { href: 'https://github.com/kiazh', label: 'github', external: true },
+  { href: 'mailto:kia.zheidari@gmail.com', label: 'email', external: false },
+  { href: 'https://discord.com/users/431549003449237505', label: 'discord', external: true },
+  { href: 'https://myanimelist.net/profile/ki_shadow', label: 'mal', external: true },
 ]
 
 export function Footer() {
@@ -24,7 +25,6 @@ export function Footer() {
             href={link.href}
             target={link.external ? '_blank' : undefined}
             rel={link.external ? 'noopener noreferrer' : undefined}
-            aria-label={link.label}
             style={{
               color: 'var(--muted)',
               fontSize: '12px',
@@ -34,7 +34,7 @@ export function Footer() {
             onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--fg)')}
             onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--muted)')}
           >
-            {link.label.toLowerCase()}
+            {link.label}
           </a>
         ))}
       </div>
