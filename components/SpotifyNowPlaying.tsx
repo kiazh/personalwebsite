@@ -70,14 +70,14 @@ export function SpotifyNowPlaying() {
 
   return (
     <div style={{
-      position: 'fixed',
-      top: '48px',
-      right: '24px',
-      width: '210px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingBottom: '48px',
       fontFamily: 'var(--font-eb-garamond)',
       lineHeight: 1.4,
     }}>
-      <span style={{ color: 'var(--muted)', fontSize: '13px' }}>listening to</span>
+      <span style={{ color: 'var(--muted)', fontSize: '12px', marginBottom: '4px' }}>listening to</span>
       <a
         href={spotify.url}
         target="_blank"
@@ -87,8 +87,7 @@ export function SpotifyNowPlaying() {
           fontSize: '16px',
           fontWeight: 500,
           textDecoration: 'none',
-          display: 'block',
-          marginTop: '4px',
+          maxWidth: '260px',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
@@ -102,8 +101,8 @@ export function SpotifyNowPlaying() {
       <span style={{
         color: 'var(--muted)',
         fontSize: '13px',
-        display: 'block',
         marginTop: '2px',
+        maxWidth: '260px',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
@@ -115,6 +114,7 @@ export function SpotifyNowPlaying() {
         <>
           <div style={{
             marginTop: '10px',
+            width: '260px',
             height: '2px',
             background: 'var(--border)',
             borderRadius: '1px',
@@ -130,6 +130,7 @@ export function SpotifyNowPlaying() {
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
+            width: '260px',
             marginTop: '5px',
             fontSize: '11px',
             color: 'var(--muted)',
