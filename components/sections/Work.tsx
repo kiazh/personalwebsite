@@ -2,12 +2,6 @@
 
 import { SectionLabel } from './About'
 
-const MAX_DESCRIPTION_LENGTH = 120
-
-function truncate(text: string, maxLength: number): string {
-  if (!text || text.length <= maxLength) return text
-  return text.slice(0, maxLength - 1) + '…'
-}
 
 const projects = [
   {
@@ -61,24 +55,18 @@ export function Work() {
               display: 'block',
             }}
           >
-            <div className="work-card" style={{ padding: '48px' }}>
+            <div className="work-card">
               <div className="work-content">
-                <div className="work-header">
-                  <span className="work-name">
-                    {p.name}
-                  </span>
+                <div className="work-meta">
+                  <span className="work-name">{p.name}</span>
                   <span className="work-year">{p.year}</span>
                   {p.status && (
-                    <span className="work-status">
-                      {p.status}
-                    </span>
+                    <span className="work-status">{p.status}</span>
                   )}
                 </div>
-
-                <p className="work-description" style={{ fontSize: '17px', lineHeight: 1.8 }}>
-                  {truncate(p.description, MAX_DESCRIPTION_LENGTH)}
+                <p className="work-description">
+                  {p.description}
                 </p>
-
               </div>
             </div>
           </a>

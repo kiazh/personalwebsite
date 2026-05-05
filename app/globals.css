@@ -55,9 +55,9 @@ a {
 }
 
 .work-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -67,7 +67,6 @@ a {
   border-radius: 8px;
   overflow: hidden;
   transition: border-color 0.15s ease;
-  height: 100%;
 }
 
 .work-card:hover {
@@ -75,14 +74,18 @@ a {
 }
 
 .work-content {
-  padding: 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+  padding: 16px 24px;
 }
 
-.work-header {
+.work-meta {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin-bottom: 8px;
+  flex-shrink: 0;
+  min-width: 160px;
 }
 
 .work-name {
@@ -107,6 +110,7 @@ a {
   font-size: 13px;
   line-height: 1.6;
   margin: 0;
+  flex: 1;
 }
 
 @media (max-width: 768px) {
@@ -116,7 +120,12 @@ a {
   .nav-icon-hide {
     display: none;
   }
-  .work-grid {
-    grid-template-columns: 1fr !important;
+  .work-content {
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+  }
+  .work-meta {
+    min-width: unset;
   }
 }
