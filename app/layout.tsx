@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { SpotifyNowPlaying } from "@/components/SpotifyNowPlaying";
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={ebGaramond.variable}>
       <body className="min-h-screen">
+        <SpotifyNowPlaying />
         <Providers>{children}</Providers>
       </body>
     </html>

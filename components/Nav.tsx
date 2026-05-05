@@ -16,7 +16,8 @@ export function Nav() {
       </span>
       <nav style={{ display: 'flex', alignItems: 'baseline', gap: '24px' }}>
         <NavLink href="https://github.com/kiazh" external>github</NavLink>
-        <NavLink href="mailto:you@email.com">contact</NavLink>
+        <NavLink href="https://www.linkedin.com/in/kiazh" external>linkedin</NavLink>
+        <NavLink href="mailto:kia.zheidari@gmail.com">email</NavLink>
         <ThemeToggle />
       </nav>
     </header>

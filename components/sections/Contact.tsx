@@ -3,7 +3,7 @@
 import { SectionLabel } from './About'
 
 const links = [
-  { label: 'email', href: 'mailto:you@email.com' },
+  { label: 'email', href: 'mailto:kia.zheidari@gmail.com' },
   { label: 'github', href: 'https://github.com/kiazh' },
   { label: 'mal', href: 'https://myanimelist.net/profile/ki_shadow' },
 ]
