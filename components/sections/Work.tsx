@@ -35,34 +35,34 @@ const projects = [
 
 export function Work() {
   return (
-    <section id="work" className="work-section">
-      <div className="work-label-wrapper">
-        <SectionLabel>Work</SectionLabel>
-      </div>
-      <div className="work-section-inner">
-        <div className="work-grid">
-          {projects.map((p) => (
-            <a
-              key={p.name}
-              href={p.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="work-link"
-            >
-              <div className="work-card">
-                <div className="work-header">
-                  <span className="work-name">{p.name}</span>
-                  <span className="work-year">{p.year}</span>
-                  {p.status && (
-                    <span className="work-status">{p.status}</span>
-                  )}
+    <div id="work">
+      <SectionLabel>Work</SectionLabel>
+      <div className="work-bleed">
+        <div className="work-section-inner">
+          <div className="work-grid">
+            {projects.map((p) => (
+              <a
+                key={p.name}
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="work-link"
+              >
+                <div className="work-card">
+                  <div className="work-header">
+                    <span className="work-name">{p.name}</span>
+                    <span className="work-year">{p.year}</span>
+                    {p.status && (
+                      <span className="work-status">{p.status}</span>
+                    )}
+                  </div>
+                  <p className="work-description">{p.description}</p>
                 </div>
-                <p className="work-description">{p.description}</p>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
