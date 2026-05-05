@@ -17,7 +17,7 @@ export function SpotifyNowPlaying() {
   useEffect(() => {
     const fetchSpotify = async () => {
       try {
-        const response = await fetch('https://api.lanyard.rest/v1/users/43154900344923750')
+        const response = await fetch('https://api.lanyard.rest/v1/users/431549003449237505')
         const data = await response.json()
 
         if (data.success && data.data?.spotify) {
