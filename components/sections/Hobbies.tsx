@@ -1,43 +1,90 @@
+'use client'
+
+import { useState } from 'react'
 import { SectionLabel } from './About'
 
-const items = [
-  {
+type Tab = 'reading' | 'anime' | 'physics' | 'games'
+
+const interests: Record<Tab, { label: string; items: { title: string; note: string }[] }> = {
+  reading: {
     label: 'Reading',
-    text: 'Vagabond, Berserk, Blame!, Kokou no Hito. Add what you actually think about them.',
+    items: [
+      { title: 'Vagabond', note: 'Add what you actually think about it.' },
+      { title: 'Berserk', note: 'Add what you actually think about it.' },
+      { title: 'Blame!', note: 'Add what you actually think about it.' },
+      { title: 'Kokou no Hito', note: 'Add what you actually think about it.' },
+    ],
   },
-  {
+  anime: {
     label: 'Anime',
-    text: 'Evangelion, Steins;Gate, Made in Abyss. The kind that stays with you.',
+    items: [
+      { title: 'Evangelion', note: 'Add what you actually think about it.' },
+      { title: 'Steins;Gate', note: 'Add what you actually think about it.' },
+      { title: 'Made in Abyss', note: 'Add what you actually think about it.' },
+    ],
   },
-  {
+  physics: {
     label: 'Physics',
-    text: 'Add what you find interesting here. What are you studying?',
+    items: [
+      { title: 'Add topic', note: 'What are you studying? What draws you to it?' },
+    ],
   },
-  {
-    label: 'Destiny 2',
-    text: 'Add your take. What draws you to it.',
+  games: {
+    label: 'Games',
+    items: [
+      { title: 'Destiny 2', note: 'Add your take. What draws you to it.' },
+    ],
   },
-]
+}
+
+const tabs: Tab[] = ['reading', 'anime', 'physics', 'games']
 
 export function Hobbies() {
+  const [active, setActive] = useState<Tab>('reading')
+  const current = interests[active]
+
   return (
-    <section id="hobbies" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
-      <SectionLabel>Outside work</SectionLabel>
+    <section id="interests" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
+      <SectionLabel>Interests</SectionLabel>
+
+      <div style={{ display: 'flex', gap: '24px', marginBottom: '36px' }}>
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActive(tab)}
+            style={{
+              background: 'none',
+              border: 'none',
+              borderBottom: active === tab ? '1px solid var(--muted)' : '1px solid transparent',
+              padding: '0 0 3px',
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+              fontSize: '15px',
+              color: active === tab ? 'var(--fg)' : 'var(--muted)',
+              fontWeight: active === tab ? 500 : 400,
+              transition: 'color 0.15s ease',
+            }}
+          >
+            {interests[tab].label}
+          </button>
+        ))}
+      </div>
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '480px' }}>
-        {items.map((item) => (
-          <div key={item.label} style={{ display: 'flex', gap: '32px' }}>
+        {current.items.map((item) => (
+          <div key={item.title} style={{ display: 'flex', gap: '32px' }}>
             <span style={{
               color: 'var(--fg)',
               fontSize: '15px',
-              minWidth: '80px',
+              minWidth: '100px',
               flexShrink: 0,
               fontWeight: 500,
               paddingTop: '1px',
             }}>
-              {item.label}
+              {item.title}
             </span>
             <span style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.7 }}>
-              {item.text}
+              {item.note}
             </span>
           </div>
         ))}
