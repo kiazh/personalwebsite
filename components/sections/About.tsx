@@ -4,10 +4,10 @@ export function About() {
       <SectionLabel>About</SectionLabel>
       <div style={{ maxWidth: '480px', lineHeight: 1.8 }}>
         <p style={{ color: 'var(--fg)', marginBottom: '20px' }}>
-          I've spent the last few years trying to understand what matters. Started with nihilism, moved through absurdism, and landed somewhere in between—building things because the act of making feels more honest than not making.
+          I've spent the last few years trying to understand what matters. Started with nihilism, moved through absurdism, landed somewhere between the two: building things because the act of making is more honest than the alternative.
         </p>
         <p style={{ color: 'var(--fg)' }}>
-          Mathematical Physics at Waterloo. I write ML libraries in C, implement encryption from specs, and wonder why we build abstractions when the first principles are already there. Currently figuring out how to be a person who exists in the world without pretending to be someone else.
+          Mathematical Physics at Waterloo. I write ML libraries in C, implement encryption from specs, and keep asking why we reach for abstractions when the first principles are right there.
         </p>
       </div>
     </section>

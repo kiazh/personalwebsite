@@ -4,7 +4,7 @@ const events = [
   {
     year: '2026',
     title: 'OpenCVProj',
-    description: 'Computer vision and TensorFlow projects. Learning to see through algorithms.',
+    description: 'Computer vision and TensorFlow projects. Object detection, image processing, neural networks on real data.',
     ongoing: true,
   },
   {

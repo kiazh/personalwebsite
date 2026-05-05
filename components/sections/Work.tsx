@@ -54,29 +54,6 @@ export function Work() {
             }}
           >
             <div className="work-card">
-              {/* Image placeholder */}
-              <div className="work-image" style={{ background: p.color }}>
-                {/* Simple geometric pattern based on project type */}
-                <div className="work-pattern" style={{
-                  background: (() => {
-                    if (p.name === 'OpenCVProj') {
-                      return 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)'
-                    }
-                    if (p.name === 'MLscratch') {
-                      return 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(255,255,255,0.2) 0%, transparent 50%)'
-                    }
-                    if (p.name === 'AES-128') {
-                      return 'linear-gradient(135deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%)'
-                    }
-                    return 'repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(255,255,255,0.1) 8px, rgba(255,255,255,0.1) 16px)'
-                  })(),
-                }} />
-                <span className="work-letter">
-                  {p.name.charAt(0)}
-                </span>
-              </div>
-
-              {/* Content */}
               <div className="work-content">
                 <div className="work-header">
                   <span className="work-name">

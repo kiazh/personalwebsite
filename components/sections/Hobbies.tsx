@@ -19,8 +19,8 @@ const interests: Record<Tab, { label: string; body: string }> = {
     body: 'Destiny 2. Something about the loop—grinding, improving, the quiet satisfaction of mechanics that work. It\'s not about the story; it\'s about showing up and getting better at something that doesn\'t matter.',
   },
   books: {
-    label: 'Books',
-    body: 'Vagabond, Berserk, Blame!, Kokou no Hito. Manga that treats existence as something to be endured, not celebrated. The art of suffering, the beauty of persistence, stories where the point isn\'t winning but continuing.',
+    label: 'Manga',
+    body: 'Vagabond, Berserk, Blame!, Kokou no Hito. Stories that treat existence as something to be endured, not celebrated. The art of suffering, the beauty of persistence, where the point isn\'t winning but continuing.',
   },
 }
 
