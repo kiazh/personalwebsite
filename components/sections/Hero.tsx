@@ -29,8 +29,8 @@ export function Hero() {
         lineHeight: 1.7,
         fontSize: '17px',
       }}>
-        Mathematical Physics, Waterloo. I build things from scratch{' '}
-        because abstractions feel like lying to myself.
+        Mathematical Physics @ Waterloo. I build systems from the ground up —
+        abstractions are useful, but I like knowing how things actually work.
       </p>
     </section>
   )

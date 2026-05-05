@@ -7,7 +7,7 @@ export function About() {
           I've spent the last few years trying to understand what matters. Started with nihilism, moved through absurdism, landed somewhere between the two: building things because the act of making is more honest than the alternative.
         </p>
         <p style={{ color: 'var(--fg)' }}>
-          Mathematical Physics at Waterloo. I write ML libraries in C, implement encryption from specs, and keep asking why we reach for abstractions when the first principles are right there.
+          Mathematical Physics @ uWaterloo. Systems Programming, Machine Learning, Low-Level Development. 
         </p>
       </div>
     </section>
