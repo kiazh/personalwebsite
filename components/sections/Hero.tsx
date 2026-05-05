@@ -31,7 +31,7 @@ export function Hero() {
         fontSize: '17px',
       }}>
         Mathematical Physics, Waterloo. I build things from scratch{' '}
-        and try to understand why they work.
+        because abstractions feel like lying to myself.
       </p>
     </section>
   )

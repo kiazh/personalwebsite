@@ -16,7 +16,7 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: "Kiarad",
-  description: "Mathematical Physics student at Waterloo. Building things from scratch.",
+  description: "Mathematical Physics student at Waterloo. Building things from scratch, questioning what matters.",
 };
 
 export default function RootLayout({

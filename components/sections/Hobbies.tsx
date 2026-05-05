@@ -8,19 +8,19 @@ type Tab = 'anime' | 'physics' | 'games' | 'books'
 const interests: Record<Tab, { label: string; body: string }> = {
   anime: {
     label: 'Anime',
-    body: 'Evangelion, Steins;Gate, Made in Abyss. The kind that stays with you. Add your take.',
+    body: 'The shows that stay with you—Evangelion, Steins;Gate, Made in Abyss, Sonny Boy. Not because they\'re entertaining, but because they force you to sit with uncomfortable questions about meaning, escapism, and what it means to return to reality.',
   },
   physics: {
     label: 'Physics',
-    body: 'Add what draws you in. What are you studying, what keeps pulling you back.',
+    body: 'What draws me in isn\'t the equations—it\'s that physics describes reality without asking for permission. Studying the mathematical framework that underpins everything, even when the math fights back.',
   },
   games: {
     label: 'Games',
-    body: 'Destiny 2. Add what draws you to it.',
+    body: 'Destiny 2. Something about the loop—grinding, improving, the quiet satisfaction of mechanics that work. It\'s not about the story; it\'s about showing up and getting better at something that doesn\'t matter.',
   },
   books: {
     label: 'Books',
-    body: 'Vagabond, Berserk, Blame!, Kokou no Hito. Add what you actually think about them.',
+    body: 'Vagabond, Berserk, Blame!, Kokou no Hito. Manga that treats existence as something to be endured, not celebrated. The art of suffering, the beauty of persistence, stories where the point isn\'t winning but continuing.',
   },
 }
 

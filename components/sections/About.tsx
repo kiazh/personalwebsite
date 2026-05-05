@@ -4,10 +4,10 @@ export function About() {
       <SectionLabel>About</SectionLabel>
       <div style={{ maxWidth: '480px', lineHeight: 1.8 }}>
         <p style={{ color: 'var(--fg)', marginBottom: '20px' }}>
-          Write something real here. Not a resume summary. Something a person would actually say.
+          I've spent the last few years trying to understand what matters. Started with nihilism, moved through absurdism, and landed somewhere in between—building things because the act of making feels more honest than not making.
         </p>
         <p style={{ color: 'var(--fg)' }}>
-          What you care about. What you&apos;re figuring out. Where you&apos;re from.
+          Mathematical Physics at Waterloo. I write ML libraries in C, implement encryption from specs, and wonder why we build abstractions when the first principles are already there. Currently figuring out how to be a person who exists in the world without pretending to be someone else.
         </p>
       </div>
     </section>

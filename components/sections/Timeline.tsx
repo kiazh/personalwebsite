@@ -3,8 +3,8 @@ import { SectionLabel } from './About'
 const events = [
   {
     year: '2026',
-    title: 'C-compiler',
-    description: 'Writing a compiler. Learning what lives between source code and silicon.',
+    title: 'OpenCVProj',
+    description: 'Computer vision and TensorFlow projects. Learning to see through algorithms.',
     ongoing: true,
   },
   {
