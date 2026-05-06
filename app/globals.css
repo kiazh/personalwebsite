@@ -87,7 +87,7 @@ a {
   left: 50%;
   transform: translateX(-50%);
   background: color-mix(in oklch, var(--bg), var(--border) 28%);
-  padding: 32px 0;
+  padding: 48px 0;
   margin: 0 0 16px;
 }
 
@@ -135,7 +135,7 @@ a {
 .work-name {
   color: var(--fg);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 19px;
 }
 
 .work-year {
@@ -151,8 +151,8 @@ a {
 
 .work-description {
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.7;
   margin: 0;
 }
 

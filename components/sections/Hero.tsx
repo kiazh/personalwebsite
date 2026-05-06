@@ -1,8 +1,8 @@
 export function Hero() {
   return (
     <section style={{
-      paddingTop: '80px',
-      paddingBottom: '72px',
+      paddingTop: '88px',
+      paddingBottom: '52px',
       position: 'relative',
       overflow: 'hidden',
     }}>

@@ -61,10 +61,10 @@ export function Hobbies() {
   const current = interests[active]
 
   return (
-    <section id="interests" style={{ paddingTop: '48px', paddingBottom: '32px' }}>
+    <section id="interests" style={{ paddingTop: '60px', paddingBottom: '88px' }}>
       <SectionLabel>Interests</SectionLabel>
 
-      <div style={{ display: 'flex', gap: '24px', marginBottom: '28px' }}>
+      <div style={{ display: 'flex', gap: '28px', marginBottom: '36px' }}>
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -76,7 +76,7 @@ export function Hobbies() {
               padding: '0 0 3px',
               cursor: 'pointer',
               fontFamily: 'inherit',
-              fontSize: '15px',
+              fontSize: '16px',
               color: active === tab ? 'var(--fg)' : 'var(--muted)',
               fontWeight: active === tab ? 500 : 400,
               transition: 'color 0.15s ease',
@@ -89,20 +89,20 @@ export function Hobbies() {
 
       <div key={active} className="interests-content">
         {current.body && (
-          <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.75 }}>
+          <p style={{ color: 'var(--muted)', fontSize: '16px', lineHeight: 1.85 }}>
             {current.body}
           </p>
         )}
 
         {current.items && current.items.length > 0 && (
-          <ul style={{ marginTop: current.body ? '16px' : '0', listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <ul style={{ marginTop: current.body ? '24px' : '0', listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '18px' }}>
             {current.items.map((item) => (
-              <li key={item.title} style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <span style={{ color: 'var(--fg)', fontSize: '14px', fontWeight: 500 }}>
+              <li key={item.title} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <span style={{ color: 'var(--fg)', fontSize: '15px', fontWeight: 500 }}>
                   {item.title}
                 </span>
                 {item.note && (
-                  <span style={{ color: 'var(--muted)', fontSize: '13px' }}>
+                  <span style={{ color: 'var(--muted)', fontSize: '14px' }}>
                     {item.note}
                   </span>
                 )}
