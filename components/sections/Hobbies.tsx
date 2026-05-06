@@ -19,7 +19,7 @@ type TabContent = {
 const interests: Record<Tab, TabContent> = {
   anime: {
     label: 'Anime/Manga',
-    body: 'As much as people like to clown on anime and manga, it has helped me at my lowest. The best I can describe the feeling through these is catharsis.',
+    body: 'As much as people like to clown on anime and manga, it has helped me at my lowest. The best I can describe whats felt through these shows is catharsis.',
     items: [
       { title: 'Firepunch', note: 'Genuinely a masterpiece, highly underrated, better than chainsaw man imo' },
       { title: 'Vagabond', note: 'Beautiful book, I love Taoism/Daoism' },
