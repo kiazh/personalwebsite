@@ -64,10 +64,14 @@ export function Hobbies() {
     <section id="interests" style={{ paddingTop: '60px', paddingBottom: '88px' }}>
       <SectionLabel>Interests</SectionLabel>
 
-      <div style={{ display: 'flex', gap: '28px', marginBottom: '36px' }}>
+      <div role="tablist" aria-label="Interests" style={{ display: 'flex', gap: '28px', marginBottom: '36px' }}>
         {tabs.map((tab) => (
           <button
             key={tab}
+            role="tab"
+            aria-selected={active === tab}
+            aria-controls={`tabpanel-${tab}`}
+            id={`tab-${tab}`}
             onClick={() => setActive(tab)}
             style={{
               background: 'none',
@@ -87,7 +91,13 @@ export function Hobbies() {
         ))}
       </div>
 
-      <div key={active} className="interests-content">
+      <div
+        key={active}
+        role="tabpanel"
+        id={`tabpanel-${active}`}
+        aria-labelledby={`tab-${active}`}
+        className="interests-content"
+      >
         {current.body && (
           <p style={{ color: 'var(--muted)', fontSize: '16px', lineHeight: 1.85 }}>
             {current.body}
