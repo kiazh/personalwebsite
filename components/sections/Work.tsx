@@ -12,14 +12,14 @@ const projects = [
   },
   {
     name: 'MLscratch',
-    description: "Machine learning in C, no libraries. Didn't want to just call torch.nn. Wanted to know what was actually happening. One of my favourite projects so far.",
+    description: "Machine learning in C, no libraries, just linear algbera and Calculus. Didn't want to just call torch.nn. Wanted to know what was actually happening. One of my favourite projects so far.",
     github: 'https://github.com/kiazh/MLscratch',
     year: '2026',
     status: null,
   },
   {
     name: 'AES-128',
-    description: 'AES-128 in Go from the FIPS 197 spec. S-box is a hardcoded table; MixColumns computes GF(2⁸) field arithmetic at runtime through gmul instead of looking it up. Passes the test vector. C port coming.',
+    description: 'AES-128 in Go from the FIPS 197 spec. S-box is a hardcoded table; MixColumns computes GF(2⁸) field arithmetic at runtime through gmul instead of looking it up. Passes the test vector. C port coming soon.',
     github: 'https://github.com/kiazh/AES-128',
     year: '2026',
     status: null,
