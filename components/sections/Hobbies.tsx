@@ -39,7 +39,7 @@ const interests: Record<Tab, TabContent> = {
       { title: 'Elden Ring', note: 'ng+7, best game ever made' },
       { title: 'Fortnite', note: 'I know... but I competed and hit Unreal, also Champ League when it was in the game' },
       { title: 'Lego Marvel Super Heroes', note: 'My childhood. Played almost all the Lego games, this one is the best' },
-      { title: 'Plant vs Zombies Garden Warfare 2', note: 'Used to play this with my childhood bestfriend whenever he came over' },
+      { title: 'Plants vs Zombies Garden Warfare 2', note: 'Used to play this with my childhood bestfriend whenever he came over' },
     ],
   },
   goals: {
