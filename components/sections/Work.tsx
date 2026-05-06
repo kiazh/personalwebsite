@@ -38,7 +38,9 @@ export function Work() {
     <div id="work">
       <div className="work-bleed">
         <div className="work-section-inner">
-          <SectionLabel>Work</SectionLabel>
+          <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 24px' }}>
+            <SectionLabel>Work</SectionLabel>
+          </div>
           <div className="work-grid">
             {projects.map((p) => (
               <a

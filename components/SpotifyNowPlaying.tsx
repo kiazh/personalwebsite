@@ -25,8 +25,9 @@ interface LanyardData {
 }
 
 const LANYARD_API = 'https://api.lanyard.rest/v1/users/431549003449237505'
-const FETCH_TIMEOUT = 10000 // 10 seconds
-const POLL_INTERVAL = 30000 // 30 seconds
+const FETCH_TIMEOUT = 10000
+const POLL_INTERVAL = 30000
+const MAX_CHARS = 30
 
 function formatTime(ms: number): string {
   const s = Math.floor(ms / 1000)
@@ -58,12 +59,13 @@ export function SpotifyNowPlaying() {
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
 
-  const fetchWithTimeout = async (url: string, signal?: AbortSignal): Promise<Response> => {
+  const fetchWithTimeout = async (url: string, externalSignal?: AbortSignal): Promise<Response> => {
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT)
+    externalSignal?.addEventListener('abort', () => controller.abort())
 
     try {
-      const response = await fetch(url, { signal: signal || controller.signal })
+      const response = await fetch(url, { signal: controller.signal })
       clearTimeout(timeoutId)
       return response
     } catch (err) {
@@ -151,42 +153,33 @@ export function SpotifyNowPlaying() {
     }
   }, [spotify])
 
+  const widgetStyle = {
+    position: 'fixed' as const,
+    bottom: '32px',
+    left: '32px',
+    fontFamily: 'var(--font-eb-garamond)',
+    lineHeight: 1.4,
+    zIndex: 50,
+  }
+
   if (isLoading) {
     return (
-      <div
-        className="spotify-widget"
-        style={{
-          position: 'fixed',
-          bottom: '32px',
-          left: '32px',
-          fontFamily: 'var(--font-eb-garamond)',
-          lineHeight: 1.4,
-        }}
-      >
+      <div className="spotify-widget" style={widgetStyle}>
         <span style={{ color: 'var(--muted)', fontSize: '13px', marginBottom: '4px' }}>status</span>
-        <div style={{
-          color: 'var(--muted)',
-          fontSize: '18px',
-          fontWeight: 400,
-        }}>
+        <div style={{ color: 'var(--muted)', fontSize: '18px', fontWeight: 400 }}>
           loading…
         </div>
       </div>
     )
   }
 
+  if (error) {
+    return null
+  }
+
   if (!spotify) {
     return (
-      <div
-        className="spotify-widget"
-        style={{
-          position: 'fixed',
-          bottom: '32px',
-          left: '32px',
-          fontFamily: 'var(--font-eb-garamond)',
-          lineHeight: 1.4,
-        }}
-      >
+      <div className="spotify-widget" style={widgetStyle}>
         <span style={{ color: 'var(--muted)', fontSize: '13px', marginBottom: '4px' }}>status</span>
         <div style={{
           color: 'var(--fg)',
@@ -207,20 +200,9 @@ export function SpotifyNowPlaying() {
   }
 
   const duration = spotify.timestamps ? spotify.timestamps.end - spotify.timestamps.start : 0
-  const maxTrackWidth = 220
-  const maxArtistWidth = 220
 
   return (
-    <div
-      className="spotify-widget"
-      style={{
-        position: 'fixed',
-        bottom: '32px',
-        left: '32px',
-        fontFamily: 'var(--font-eb-garamond)',
-        lineHeight: 1.4,
-      }}
-    >
+    <div className="spotify-widget" style={widgetStyle}>
       <span style={{ color: 'var(--muted)', fontSize: '13px', marginBottom: '4px' }}>listening to</span>
       <a
         href={spotify.url}
@@ -231,7 +213,7 @@ export function SpotifyNowPlaying() {
           fontSize: '18px',
           fontWeight: 500,
           textDecoration: 'none',
-          maxWidth: `${maxTrackWidth}px`,
+          maxWidth: '220px',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
@@ -240,25 +222,25 @@ export function SpotifyNowPlaying() {
         onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--muted)')}
         onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--fg)')}
       >
-        {truncate(spotify.track, maxTrackWidth)}
+        {truncate(spotify.track, MAX_CHARS)}
       </a>
       <span style={{
         color: 'var(--muted)',
         fontSize: '14px',
         marginTop: '2px',
-        maxWidth: `${maxArtistWidth}px`,
+        maxWidth: '220px',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       }}>
-        {truncate(spotify.artist, maxArtistWidth)}
+        {truncate(spotify.artist, MAX_CHARS)}
       </span>
 
       {duration > 0 && (
         <>
           <div style={{
             marginTop: '10px',
-            width: `${maxTrackWidth}px`,
+            width: '220px',
             height: '2px',
             background: 'var(--border)',
             borderRadius: '1px',
@@ -276,7 +258,7 @@ export function SpotifyNowPlaying() {
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
-            width: `${maxTrackWidth}px`,
+            width: '220px',
             marginTop: '5px',
             fontSize: '11px',
             color: 'var(--muted)',
