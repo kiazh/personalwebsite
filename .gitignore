@@ -40,9 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# claude
-CLAUDE.md
-AGENTS.md
-DESIGN.md
-PRODUCT.md
-.claude/
+# tool artifacts
+.impeccable/

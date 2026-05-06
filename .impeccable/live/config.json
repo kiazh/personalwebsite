@@ -1,6 +1,0 @@
-{
-  "commentSyntax": "jsx",
-  "cspChecked": true,
-  "files": ["app/layout.tsx"],
-  "insertBefore": "</body>"
-}

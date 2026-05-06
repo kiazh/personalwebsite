@@ -16,7 +16,7 @@ export function Footer() {
       justifyContent: 'space-between',
     }}>
       <p style={{ color: 'var(--muted)', fontSize: '13px' }}>
-        {new Date().getFullYear()}
+        burgers
       </p>
       <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
         {footerLinks.map((link) => (
