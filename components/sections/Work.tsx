@@ -5,28 +5,28 @@ import { SectionLabel } from './About'
 const projects = [
   {
     name: 'OpenCV',
-    description: 'A collection of computer vision projects built with OpenCV and TensorFlow. The highlight is a Siamese neural network for one-shot face verification. It compares image pairs to confirm identity without ever needing to retrain when new people are added. Also includes a text scanner.',
+    description: 'Wanted to work with cameras. Built a face verifier on a Siamese network — it compares embeddings instead of memorizing faces, so you never retrain when someone new shows up. Also a document scanner: edge detection, perspective warp, clean output.',
     github: 'https://github.com/kiazh/OpenCVProj',
     year: '2026',
     status: null,
   },
   {
     name: 'MLscratch',
-    description: 'Wanted to understand machine learning beyond the usual frameworks, so I built a neural network library from scratch in C — easily one of my favourite projects.',
+    description: "Machine learning in C, no libraries. Didn't want to just call torch.nn — wanted to know what was actually happening. One of my favourite things I've built.",
     github: 'https://github.com/kiazh/MLscratch',
     year: '2026',
     status: null,
   },
   {
     name: 'AES-128',
-    description: 'AES-128 implemented from scratch in Go without external libraries — including GF(2⁸) field arithmetic via the Russian Peasant algorithm, runtime MixColumns, full 10-round key schedule, and both encrypt/decrypt paths. Passes the FIPS 197 Appendix B test vector. C port in progress.',
+    description: 'AES-128 from the spec, no libraries. Most implementations hardcode the GF(2⁸) lookup tables. Mine computes it. Passes FIPS 197. C port in progress.',
     github: 'https://github.com/kiazh/AES-128',
     year: '2026',
     status: null,
   },
   {
     name: 'Esp32Network',
-    description: 'ESP32 pipeline that reads NRF24L01 packets, extracts link features over a sliding window, and classifies the connection as normal, weak, or interference using a decision tree exported as a C header — no runtime dependencies on device.',
+    description: 'Embedded ML on an ESP32. Classifies NRF24 link quality — normal, weak, or interference — using a decision tree compiled into a C header. No runtime dependencies, just the model living in the firmware.',
     github: 'https://github.com/kiazh/Esp32Network',
     year: '2024',
     status: null,
