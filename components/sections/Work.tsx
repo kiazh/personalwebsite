@@ -19,14 +19,14 @@ const projects = [
   },
   {
     name: 'AES-128',
-    description: 'AES-128 in Go from the spec. I wanted to understand how it actually works, not just copy lookup tables, so I implemented GF(2⁸) arithmetic from scratch. Passes FIPS 197. C port coming.',
+    description: 'AES-128 in Go from the FIPS 197 spec. No lookup tables; all the field arithmetic runs through GF(2⁸) multiplication at runtime. Passes the test vector. C port coming.',
     github: 'https://github.com/kiazh/AES-128',
     year: '2026',
     status: null,
   },
   {
     name: 'Esp32Network',
-    description: 'Wanted to get ML inference running directly on hardware. Trained a decision tree on NRF24 link features, compiled it into a C header, and flashed it onto an ESP32. The model lives in the firmware with no runtime dependencies.',
+    description: 'Embedded ML on an ESP32. Classifies NRF24 link quality — normal, weak, or interference — using a decision tree compiled into a C header. No runtime dependencies, just the model living in the firmware.',
     github: 'https://github.com/kiazh/Esp32Network',
     year: '2024',
     status: null,
