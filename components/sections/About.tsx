@@ -1,8 +1,8 @@
 export function About() {
   return (
-    <section id="about" style={{ paddingTop: '72px', paddingBottom: '72px' }}>
+    <section id="about" style={{ paddingTop: '44px', paddingBottom: '56px' }}>
       <SectionLabel>About</SectionLabel>
-      <div style={{ lineHeight: 1.8 }}>
+      <div style={{ lineHeight: 1.85 }}>
         <p style={{ color: 'var(--fg)', marginBottom: '0px' }}>
           I'm Kiarad Zafar Heidari, an 18-year-old Mathematical Physics student at the University of Waterloo. I don't separate physics from development.
            I just want to know how things work, and that takes me everywhere: low-level systems, machine learning, general relativity, philosophy.
