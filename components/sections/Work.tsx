@@ -4,7 +4,7 @@ import { SectionLabel } from './About'
 
 const projects = [
   {
-    name: 'Facial Recognotion',
+    name: 'Facial Recognition',
     description: 'A face verification system built on a Siamese network. It learns to compare faces rather than memorize them, so adding someone new never requires retraining. Includes a document scanner built alongside it while getting familiar with TensorFlow and OpenCV.',
     github: 'https://github.com/kiazh/OpenCVProj',
     year: '2026',
@@ -19,7 +19,7 @@ const projects = [
   },
   {
     name: 'AES-128',
-    description: 'Cryptography has always interested me, and learning Go gave me a good excuse to finally sit down and implement AES-128 properly. No libraries, just the math. Planning to port it to C next.',
+    description: 'AES-128 in Go from the FIPS 197 spec. S-box is a hardcoded table; MixColumns computes GF(2⁸) field arithmetic at runtime through gmul instead of looking it up. Passes the test vector. C port coming.',
     github: 'https://github.com/kiazh/AES-128',
     year: '2026',
     status: null,
