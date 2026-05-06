@@ -26,7 +26,7 @@ const projects = [
   },
   {
     name: 'Esp32Network',
-    description: 'Embedded ML on an ESP32. Classifies NRF24 link quality — normal, weak, or interference — using a decision tree compiled into a C header. No runtime dependencies, just the model living in the firmware.',
+    description: 'Wanted to get ML inference running directly on hardware. Trained a decision tree on NRF24 link features, compiled it into a C header, and flashed it onto an ESP32. The model lives in the firmware with no runtime dependencies.',
     github: 'https://github.com/kiazh/Esp32Network',
     year: '2024',
     status: null,
