@@ -27,8 +27,8 @@ const events = [
   },
   {
     year: '2024',
-    title: 'Esp32Network',
-    description: 'Embedded ML for NRF24 link quality classification on an ESP32.',
+    title: '',
+    description: '',
     ongoing: false,
   },
 ]
