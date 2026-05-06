@@ -10,7 +10,7 @@ const footerLinks = [
 export function Footer() {
   return (
     <footer style={{
-      paddingBottom: '40px',
+      paddingBottom: '64px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
