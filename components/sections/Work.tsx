@@ -5,21 +5,21 @@ import { SectionLabel } from './About'
 const projects = [
   {
     name: 'OpenCV',
-    description: 'Wanted to work with cameras. Built a face verifier on a Siamese network — it compares embeddings instead of memorizing faces, so you never retrain when someone new shows up. Also a document scanner: edge detection, perspective warp, clean output.',
+    description: 'Wanted to work with cameras and learn TensorFlow. Built a face verifier on a Siamese network; it compares embeddings instead of memorizing faces, so you never retrain when someone new shows up. Also a document scanner.',
     github: 'https://github.com/kiazh/OpenCVProj',
     year: '2026',
     status: null,
   },
   {
     name: 'MLscratch',
-    description: "Machine learning in C, no libraries. Didn't want to just call torch.nn — wanted to know what was actually happening. One of my favourite things I've built.",
+    description: "Machine learning in C, no libraries. Didn't want to just call torch.nn. Wanted to know what was actually happening. One of my favourite things I've built.",
     github: 'https://github.com/kiazh/MLscratch',
     year: '2026',
     status: null,
   },
   {
     name: 'AES-128',
-    description: 'AES-128 from the spec, no libraries. Most implementations hardcode the GF(2⁸) lookup tables. Mine computes it. Passes FIPS 197. C port in progress.',
+    description: 'AES-128 in Go from the spec. I wanted to understand how it actually works, not just copy lookup tables, so I implemented GF(2⁸) arithmetic from scratch. Passes FIPS 197. C port coming.',
     github: 'https://github.com/kiazh/AES-128',
     year: '2026',
     status: null,
