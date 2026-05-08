@@ -53,7 +53,6 @@ export function Work() {
                 <div className="work-card">
                   <div className="work-header">
                     <span className="work-name">{p.name}</span>
-                    <span className="work-year">{p.year}</span>
                     {p.status && (
                       <span className="work-status">{p.status}</span>
                     )}
