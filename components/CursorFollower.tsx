@@ -1,61 +1,76 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const LERP = 0.1; // lower = more lag behind cursor
 
 export function CursorFollower() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const elRef = useRef<HTMLDivElement>(null);
+  const pos = useRef({ x: 0, y: 0 });
+  const target = useRef({ x: 0, y: 0 });
+  const raf = useRef<number>(0);
+  const idleTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
   useEffect(() => {
     if (prefersReducedMotion) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      setIsVisible(true);
+    const tick = () => {
+      pos.current.x += (target.current.x - pos.current.x) * LERP;
+      pos.current.y += (target.current.y - pos.current.y) * LERP;
+      if (elRef.current) {
+        elRef.current.style.transform = `translate(${pos.current.x - 20}px, ${pos.current.y - 20}px)`;
+      }
+      raf.current = requestAnimationFrame(tick);
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const onMove = (e: MouseEvent) => {
+      target.current = { x: e.clientX, y: e.clientY };
+      setIsVisible(true);
+      clearTimeout(idleTimer.current);
+      idleTimer.current = setTimeout(() => setIsVisible(false), 1000);
+    };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("mouseenter", handleMouseEnter);
+    const onLeave = () => setIsVisible(false);
+    const onEnter = () => setIsVisible(true);
+
+    window.addEventListener("mousemove", onMove);
+    document.documentElement.addEventListener("mouseleave", onLeave);
+    document.documentElement.addEventListener("mouseenter", onEnter);
+    raf.current = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseleave", handleMouseLeave);
-      window.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mousemove", onMove);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
+      document.documentElement.removeEventListener("mouseenter", onEnter);
+      cancelAnimationFrame(raf.current);
+      clearTimeout(idleTimer.current);
     };
   }, [prefersReducedMotion]);
 
-  if (prefersReducedMotion || !isVisible) return null;
+  if (prefersReducedMotion) return null;
 
   return (
     <div
+      ref={elRef}
       className="fixed pointer-events-none z-50 rounded-full"
       style={{
         width: "40px",
         height: "40px",
-        left: position.x - 20,
-        top: position.y - 20,
-        background: "var(--accent)",
-        opacity: 0.15,
-        transition: "transform 0.15s ease-out, opacity 0.2s ease-out",
-        transform: "scale(1)",
-        filter: "blur(8px)",
+        left: 0,
+        top: 0,
+        border: "1.5px solid var(--fg)",
+        opacity: isVisible ? 0.3 : 0,
+        transition: "opacity 0.25s ease-out",
       }}
     />
   );
