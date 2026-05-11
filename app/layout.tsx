@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { SpotifyNowPlaying } from "@/components/SpotifyNowPlaying";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { CursorFollower } from "@/components/CursorFollower";
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Providers>{children}</Providers>
         </ErrorBoundary>
         <SpotifyNowPlaying />
+        <CursorFollower />
       </body>
     </html>
   );
