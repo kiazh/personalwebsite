@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const SIZE = 38;
+const SIZE = 35;
 const HALF = SIZE / 2;
 const LERP_POS = 0.1;
 const LERP_SCALE = 0.04;
