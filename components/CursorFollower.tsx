@@ -45,16 +45,17 @@ export function CursorFollower() {
 
   return (
     <div
-      className="fixed pointer-events-none z-50 rounded-full mix-blend-difference"
+      className="fixed pointer-events-none z-50 rounded-full"
       style={{
-        width: "32px",
-        height: "32px",
-        left: position.x - 16,
-        top: position.y - 16,
+        width: "40px",
+        height: "40px",
+        left: position.x - 20,
+        top: position.y - 20,
         background: "var(--accent)",
-        opacity: 0.4,
-        transition: "transform 0.12s ease-out, opacity 0.2s ease-out",
+        opacity: 0.15,
+        transition: "transform 0.15s ease-out, opacity 0.2s ease-out",
         transform: "scale(1)",
+        filter: "blur(8px)",
       }}
     />
   );
