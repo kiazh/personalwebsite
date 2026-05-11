@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const SIZE = 35;
+const SIZE = 40;
 const HALF = SIZE / 2;
 const LERP_POS = 0.1;
 const LERP_SCALE = 0.18;
@@ -56,8 +56,14 @@ export function CursorFollower() {
 
     const onLeave = () => setVisible(false);
     const onEnter = () => setVisible(true);
-    const onDown = () => { targetScale.current = 1.4; };
-    const onUp = () => { targetScale.current = 1; };
+    const onDown = () => { targetScale.current = 0.65; };
+    const onUp = () => {
+      targetScale.current = 1;
+      // Reset idle timer so circle doesn't fade after click
+      setVisible(true);
+      clearTimeout(idleTimer.current);
+      idleTimer.current = setTimeout(() => setVisible(false), 900);
+    };
 
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mousedown", onDown);
