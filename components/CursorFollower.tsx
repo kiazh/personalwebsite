@@ -2,75 +2,95 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const LERP = 0.1; // lower = more lag behind cursor
+const SIZE = 28;
+const HALF = SIZE / 2;
+const LERP_POS = 0.1;
+const LERP_SCALE = 0.18;
 
 export function CursorFollower() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [skip, setSkip] = useState(false);
   const elRef = useRef<HTMLDivElement>(null);
-  const pos = useRef({ x: 0, y: 0 });
-  const target = useRef({ x: 0, y: 0 });
+  const pos = useRef({ x: -SIZE, y: -SIZE });
+  const target = useRef({ x: -SIZE, y: -SIZE });
+  const scale = useRef(1);
+  const targetScale = useRef(1);
+  const seenMove = useRef(false);
   const raf = useRef<number>(0);
   const idleTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Touch-only: (hover: none) = no hover capability = mobile/tablet
+    const touchOnly = window.matchMedia("(hover: none)").matches;
+    if (reducedMotion || touchOnly) setSkip(true);
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (skip) return;
 
     const tick = () => {
-      pos.current.x += (target.current.x - pos.current.x) * LERP;
-      pos.current.y += (target.current.y - pos.current.y) * LERP;
+      pos.current.x += (target.current.x - pos.current.x) * LERP_POS;
+      pos.current.y += (target.current.y - pos.current.y) * LERP_POS;
+      scale.current += (targetScale.current - scale.current) * LERP_SCALE;
+
       if (elRef.current) {
-        elRef.current.style.transform = `translate(${pos.current.x - 20}px, ${pos.current.y - 20}px)`;
+        elRef.current.style.transform = `translate(${pos.current.x - HALF}px, ${pos.current.y - HALF}px) scale(${scale.current.toFixed(3)})`;
       }
       raf.current = requestAnimationFrame(tick);
     };
 
     const onMove = (e: MouseEvent) => {
-      target.current = { x: e.clientX, y: e.clientY };
-      setIsVisible(true);
+      if (!seenMove.current) {
+        // Snap to cursor on first move — prevents flying in from corner
+        pos.current = { x: e.clientX, y: e.clientY };
+        target.current = { x: e.clientX, y: e.clientY };
+        seenMove.current = true;
+      } else {
+        target.current = { x: e.clientX, y: e.clientY };
+      }
+      setVisible(true);
       clearTimeout(idleTimer.current);
-      idleTimer.current = setTimeout(() => setIsVisible(false), 1000);
+      idleTimer.current = setTimeout(() => setVisible(false), 900);
     };
 
-    const onLeave = () => setIsVisible(false);
-    const onEnter = () => setIsVisible(true);
+    const onLeave = () => setVisible(false);
+    const onEnter = () => setVisible(true);
+    const onDown = () => { targetScale.current = 0.6; };
+    const onUp = () => { targetScale.current = 1; };
 
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup", onUp);
     document.documentElement.addEventListener("mouseleave", onLeave);
     document.documentElement.addEventListener("mouseenter", onEnter);
     raf.current = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup", onUp);
       document.documentElement.removeEventListener("mouseleave", onLeave);
       document.documentElement.removeEventListener("mouseenter", onEnter);
       cancelAnimationFrame(raf.current);
       clearTimeout(idleTimer.current);
     };
-  }, [prefersReducedMotion]);
+  }, [skip]);
 
-  if (prefersReducedMotion) return null;
+  if (skip) return null;
 
   return (
     <div
       ref={elRef}
       className="fixed pointer-events-none z-50 rounded-full"
       style={{
-        width: "40px",
-        height: "40px",
+        width: SIZE,
+        height: SIZE,
         left: 0,
         top: 0,
         border: "1.5px solid var(--fg)",
-        opacity: isVisible ? 0.3 : 0,
-        transition: "opacity 0.25s ease-out",
+        opacity: visible ? 0.28 : 0,
+        transition: "opacity 0.3s ease-out",
       }}
     />
   );
