@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const SIZE = 30;
+const SIZE = 35;
 const HALF = SIZE / 2;
 const LERP_POS = 0.1;
+const LERP_SCALE = 0.18;
 
 export function CursorFollower() {
   const [visible, setVisible] = useState(false);
@@ -12,6 +13,8 @@ export function CursorFollower() {
   const elRef = useRef<HTMLDivElement>(null);
   const pos = useRef({ x: -SIZE, y: -SIZE });
   const target = useRef({ x: -SIZE, y: -SIZE });
+  const scale = useRef(1);
+  const targetScale = useRef(1);
   const seenMove = useRef(false);
   const raf = useRef<number>(0);
   const idleTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -29,9 +32,10 @@ export function CursorFollower() {
     const tick = () => {
       pos.current.x += (target.current.x - pos.current.x) * LERP_POS;
       pos.current.y += (target.current.y - pos.current.y) * LERP_POS;
+      scale.current += (targetScale.current - scale.current) * LERP_SCALE;
 
       if (elRef.current) {
-        elRef.current.style.transform = `translate(${pos.current.x - HALF}px, ${pos.current.y - HALF}px)`;
+        elRef.current.style.transform = `translate(${pos.current.x - HALF}px, ${pos.current.y - HALF}px) scale(${scale.current.toFixed(3)})`;
       }
       raf.current = requestAnimationFrame(tick);
     };
@@ -52,13 +56,20 @@ export function CursorFollower() {
 
     const onLeave = () => setVisible(false);
     const onEnter = () => setVisible(true);
+    const onDown = () => { targetScale.current = 1.4; };
+    const onUp = () => { targetScale.current = 1; };
+
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup", onUp);
     document.documentElement.addEventListener("mouseleave", onLeave);
     document.documentElement.addEventListener("mouseenter", onEnter);
     raf.current = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup", onUp);
       document.documentElement.removeEventListener("mouseleave", onLeave);
       document.documentElement.removeEventListener("mouseenter", onEnter);
       cancelAnimationFrame(raf.current);
